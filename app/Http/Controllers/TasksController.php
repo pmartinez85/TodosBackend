@@ -37,7 +37,8 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Task::create($request->input());
+        //input sense parametre retorna tot
     }
 
     /**
