@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Task;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -18,9 +17,8 @@ class TasksController extends Controller
     public function index(Request $request)
     {
 
-            $tasks = Task::paginate(15);
+        $tasks = Task::paginate(15);
         return $this->generatepaginatedResponse();
-        //todo aquest codi
 
     }
 
@@ -65,18 +63,6 @@ class TasksController extends Controller
     public function edit($id)
     {
         //
-    }
-
-    public function transform(Model$task)
-    {
-        //per que ens retorni un json hem de fer un array
-        return [
-            'name'      => $task->name,
-            //fem castings per transformar a boolean i integer.
-            'done'      => (boolean) $task->done,
-            'priority'  => (integer) $task->priority,
-
-        ];
     }
 
     /**
