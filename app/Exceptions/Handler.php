@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -44,7 +45,21 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+//        if ($exception instanceof ModelNotFoundException){}
+//            return Response::json([
+//                'error' => "Hi ha hagut una excepcio" . $exception->getMessage(),
+//                'message' => 'Task does not exist',
+//                'code' => 10,404)
+//   ]);
+// }
+//    }
+
+//              TODO --> REFER ESTE CODI DE DALT
+
+
         return parent::render($request, $exception);
+
+
     }
 
     /**
