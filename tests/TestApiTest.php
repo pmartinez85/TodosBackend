@@ -27,15 +27,15 @@ class TestApiTest extends TestCase
     public function testShowOneTask()
     {
         $task = factory(App\Task::class)->create();
-        $this->json('GET', $this->uri, '','/', $task->id)
+        $this->json('GET', $this->uri, '/', $task->id)
             //->dump()
                 ->seeJsonStructure(
                     ["id", "name", "done", "priority"])
 
             ->seeJsonContains([
                 "name"=>$task->name,
-//                "done"=>$task->done,
-//                "priority"=>$task->priority
+                "done"=>$task->done,
+                "priority"=>$task->priority
             ]);
     }
 

@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
+use Response;
 
 class TasksController extends Controller
 {
@@ -16,7 +15,21 @@ class TasksController extends Controller
      */
     public function index()
     {
-        return Task::all();
+        //1)No metadata
+        //2)Pagination --> no podem ensenyar un json en 200 tasques...
+        //hem d'ensenyar les tasques necessaries i les seves metadates
+        //3)No error message -->Hem de mostrar errors en la nostra API
+        //4)Transformacions --> Hem de transformar el que ensenyem
+
+
+        $tasks = Task::all();
+
+        return Response::json([
+            'propietari' => 'pedro Martinez',
+            'total' => $tasks->total(),
+            'subtotal'=>$tasks->subtotal(),
+            'data' => $tasks->toArray()
+        ],200);
     }
 
     /**
@@ -49,7 +62,13 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        return Task::findOrFail($id);
+        try {
+            return Task::findOrFail($id);
+        }catch (\Exeception $e){
+            return Response::json([
+                "Error"=>"Hi ha hagut una exepció"
+            ]);
+        }
     }
 
     /**
