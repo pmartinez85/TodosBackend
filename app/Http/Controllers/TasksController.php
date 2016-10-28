@@ -67,6 +67,15 @@ class TasksController extends Controller
         //
     }
 
+    protected function transformCollection($resources){
+
+        //Collections: laravel collections
+            return array_map(function($resource)){
+            return $this->transform($resource)
+
+        }, $resource);
+    }
+
     public function transform(Model$task)
     {
         //per que ens retorni un json hem de fer un array
