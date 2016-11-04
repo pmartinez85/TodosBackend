@@ -2,26 +2,30 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Task;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Response;
 
-class TasksController extends Controller
+class TasksController extends TaskTransformController
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-
-            $tasks = Task::paginate(15);
-        return $this->generatepaginatedResponse();
-        //todo aquest codi
-
+        //No metadata
+        //Pagination
+        //No error message
+        //Transformations: hem de transformar el que ensenyem
+        $tasks = Task::paginate(15);
+        return $this->generatePaginatedResponse($tasks, ['propietari' => 'David Martinez',]);
+//        return Task::paginate($request->input('per_page'));
     }
 
     /**
@@ -42,7 +46,13 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        Task::create([$request->all()]);   // Retorna tots els arrays
+//        $request->input('name')
+        Task::create($request->all());
+        return response(array(
+            'error' => false,
+            'created' => true,
+            'message' =>'Task created successfully',
+        ),200);
     }
 
     /**
@@ -53,7 +63,28 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        return Task::findOrFail($id);
+//        try {
+//            return Task::findOrFail($id);
+//        } catch (\Exception $e) {
+//            return Response::json([
+//               'error' => 'Hi ha hagut una excepció',
+//               'code'  => 10
+//            ],404);
+//        }
+
+//        $task = Task::find($id);
+//
+//        if($task != null){
+//            return $task;
+//        }
+//
+//        return Response::json([
+//               'error' => 'Hi ha hagut una excepció',
+//               'code'  => 10
+//            ],404);
+        $task = Task::findOrFail($id);
+
+        return $this->transform($task);
     }
 
     /**
@@ -67,27 +98,6 @@ class TasksController extends Controller
         //
     }
 
-    protected function transformCollection($resources){
-
-        //Collections: laravel collections
-            return array_map(function($resource)){
-            return $this->transform($resource)
-
-        }, $resource);
-    }
-
-    public function transform(Model$task)
-    {
-        //per que ens retorni un json hem de fer un array
-        return [
-            'name'      => $task->name,
-            //fem castings per transformar a boolean i integer.
-            'done'      => (boolean) $task->done,
-            'priority'  => (integer) $task->priority,
-
-        ];
-    }
-
     /**
      * Update the specified resource in storage.
      *
@@ -97,8 +107,13 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Task::findOrFail($id);
-        Task::create([$request->all()]);
+        Task::findOrFail($id)->update($request->all());
+        return response(array(
+            'error' => false,
+            'updated' => true,
+            'message' =>'Task updated successfully'
+        ),200);
+
     }
 
     /**
@@ -109,6 +124,13 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        Task::destroy($id);
+        Task::findOrFail($id)->delete();
+        return response(array(
+            'error' => false,
+            'deleted' => true,
+            'message' =>'Task deleted successfully',
+        ),200);
     }
+
+
 }
