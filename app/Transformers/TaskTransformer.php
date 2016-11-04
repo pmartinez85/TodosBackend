@@ -1,5 +1,7 @@
 <?php
 
+use App\Transformers\Contracts\Transformer\Transformer;
+
 class TaskTransformer implements Transformer
 {
 
