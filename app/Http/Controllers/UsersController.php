@@ -10,6 +10,14 @@ use App\Http\Requests;
 class TasksController extends Controller
 {
     /**
+     * TasksController constructor.
+     */
+    public function __construct(UserTransformer $transformer)
+    {
+        parent::__construct($transformer);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -21,6 +29,8 @@ class TasksController extends Controller
         return $this->generatepaginatedResponse();
 
     }
+
+
 
     /**
      * Show the form for creating a new resource.

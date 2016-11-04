@@ -1,6 +1,6 @@
 <?php
 
-class TaskTransformer implements Transformer
+class UserTransformer implements Transformer
 {
 
 
@@ -11,8 +11,7 @@ class TaskTransformer implements Transformer
         }
         return [
             'name' => $resource['name'],
-            'done' => (boolean)$resource['done'],
-            'priority' => (integer)$resource['priority'],
+            'email' => $resource['email'],
 
         ];
     }

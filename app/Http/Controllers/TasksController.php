@@ -9,14 +9,27 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Response;
+use TaskTransformer;
 
-class TasksController extends TaskTransformController
+class TasksController extends Controller
 {
+    /**
+     * TasksController constructor.
+     */
+    public function __construct(TaskTransformer $transformer)
+    {
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
+
+
     public function index()
     {
         //No metadata
