@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Task;
 use Barryvdh\Debugbar\Controllers\BaseController;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use Response;
 use TaskTransformer;
 
@@ -26,11 +22,6 @@ class UserTaskController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-
-
-
-
-
     public function index()
     {
         //No metadata
@@ -38,7 +29,8 @@ class UserTaskController extends BaseController
         //No error message
         //Transformations: hem de transformar el que ensenyem
         $tasks = Task::paginate(15);
-        return $this->generatePaginatedResponse($tasks, ['propietari' => 'David Martinez',]);
+
+        return $this->generatePaginatedResponse($tasks, ['propietari' => 'David Martinez']);
 //        return Task::paginate($request->input('per_page'));
     }
 
@@ -55,29 +47,32 @@ class UserTaskController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-//        $request->input('name')
+        //        $request->input('name')
         Task::create($request->all());
-        return response(array(
-            'error' => false,
+
+        return response([
+            'error'   => false,
             'created' => true,
-            'message' =>'Task created successfully',
-        ),200);
+            'message' => 'Task created successfully',
+        ], 200);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-//        try {
+        //        try {
 //            return Task::findOrFail($id);
 //        } catch (\Exception $e) {
 //            return Response::json([
@@ -104,7 +99,8 @@ class UserTaskController extends BaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -115,36 +111,37 @@ class UserTaskController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         Task::findOrFail($id)->update($request->all());
-        return response(array(
-            'error' => false,
-            'updated' => true,
-            'message' =>'Task updated successfully'
-        ),200);
 
+        return response([
+            'error'   => false,
+            'updated' => true,
+            'message' => 'Task updated successfully',
+        ], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         Task::findOrFail($id)->delete();
-        return response(array(
-            'error' => false,
+
+        return response([
+            'error'   => false,
             'deleted' => true,
-            'message' =>'Task deleted successfully',
-        ),200);
+            'message' => 'Task deleted successfully',
+        ], 200);
     }
-
-
 }
