@@ -4,17 +4,16 @@ use App\Transformers\Contracts\Transformer\Transformer;
 
 class TaskTransformer implements Transformer
 {
-
-
     public function transform($resource)
     {
-        if (resource instanceof \App\Task){
-            throw new IncorrectModelException;
+        if (resource instanceof \App\Task) {
+            throw new IncorrectModelException();
         }
+
         return [
-            'name' => $resource['name'],
-            'done' => (boolean)$resource['done'],
-            'priority' => (integer)$resource['priority'],
+            'name'     => $resource['name'],
+            'done'     => (bool) $resource['done'],
+            'priority' => (int) $resource['priority'],
 
         ];
     }
