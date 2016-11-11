@@ -7,10 +7,15 @@ use App\Transformers\UserTransformer;
 use App\User;
 use Illuminate\Http\Request;
 
+/**
+ * @property UserRepository repository
+ */
 class UsersController extends Controller
 {
     /**
      * TasksController constructor.
+     * @param UserTransformer $transformer
+     * @param UserRepository $repository
      */
     public function __construct(UserTransformer $transformer, UserRepository $repository)
     {
@@ -22,12 +27,13 @@ class UsersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
         $users = User::paginate(15);
 
+        /** @noinspection PhpMethodOrClassCallIsNotCaseSensitiveInspection */
         return $this->generatepaginatedResponse($users, ['propietari' => 'Pedro Martinez']);
     }
 

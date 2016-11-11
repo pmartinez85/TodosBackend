@@ -27,6 +27,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public static function findOrFail($id)
+    {
+    }
+
+    public static function paginate($int)
+    {
+    }
+
     public function tasks()
     {
         return $this->hasMany(Task::class);
