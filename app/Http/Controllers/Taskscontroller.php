@@ -7,19 +7,19 @@ use Illuminate\Http\Request;
 use Response;
 use App\Transformers\TaskTransformer;
 
-class Taskscontroller extends Controller
-{
-    /**
-     * TasksController constructor.
-     */
-    public function __construct(TaskTransformer $transformer)
-                            //(TaskTransformer $transformer, Paginator $paginator)
-    {
-        //SRP single responsability principle
-        //$this->paginator = $paginator;
-        parent::__construct($transformer);
-    }
+use App\Repositories\TaskRepository;
 
+class TasksController extends Controller
+{
+   protected $repository;
+
+    public function __construct(TaskTransformer $transformer, TaskRepository $repository)
+
+    {
+        parent::__construct($transformer);
+
+        $this->repository = $repository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -27,14 +27,11 @@ class Taskscontroller extends Controller
      */
     public function index()
     {
-        //No metadata
-        //Pagination
-        //No error message
-        //Transformations: hem de transformar el que ensenyem
+
         $tasks = Task::paginate(15);
 
-        return $this->generatePaginatedResponse($tasks, ['propietari' => 'David Martinez']);
-//        return Task::paginate($request->input('per_page'));
+        return $this->generatePaginatedResponse($tasks, ['propietari' => 'Pedro Martinez']);
+
     }
 
     /**
@@ -56,13 +53,12 @@ class Taskscontroller extends Controller
      */
     public function store(Request $request)
     {
-        //        $request->input('name')
         Task::create($request->all());
 
         return response([
             'error'   => false,
             'created' => true,
-            'message' => 'Task created successfully',
+            'message' => 'Tasca creada correctament',
         ], 200);
     }
 
@@ -75,28 +71,11 @@ class Taskscontroller extends Controller
      */
     public function show($id)
     {
-        //        try {
-//            return Task::findOrFail($id);
-//        } catch (\Exception $e) {
-//            return Response::json([
-//               'error' => 'Hi ha hagut una excepció',
-//               'code'  => 10
-//            ],404);
-//        }
 
-//        $task = Task::find($id);
-//
-//        if($task != null){
-//            return $task;
-//        }
-//
-//        return Response::json([
-//               'error' => 'Hi ha hagut una excepció',
-//               'code'  => 10
-//            ],404);
         $task = Task::findOrFail($id);
+        $task->$this->repository->find($id);
 
-        return $this->transform($task);
+        return $this->transformer->transform($task);
     }
 
     /**
@@ -126,7 +105,7 @@ class Taskscontroller extends Controller
         return response([
             'error'   => false,
             'updated' => true,
-            'message' => 'Task updated successfully',
+            'message' => 'Tasca actualitzada correctament',
         ], 200);
     }
 
@@ -144,7 +123,7 @@ class Taskscontroller extends Controller
         return response([
             'error'   => false,
             'deleted' => true,
-            'message' => 'Task deleted successfully',
+            'message' => 'Tasca esborrada correctament',
         ], 200);
     }
 }

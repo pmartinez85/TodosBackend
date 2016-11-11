@@ -1,10 +1,12 @@
 <?php
+namespace App\Transformers;
+use App\Exceptions\IncorrectModelException;
 
-class UserTransformer implements Transformer
+class UserTransformer extends Transformer
 {
     public function transform($resource)
     {
-        if (resource instanceof \App\Task) {
+        if (!$resource instanceof \App\User) {
             throw new IncorrectModelException();
         }
 

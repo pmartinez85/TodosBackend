@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Task;
+use App\Repositories\UserRepository;
+use App\Transformers\UserTransformer;
+use App\User;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
@@ -10,9 +12,11 @@ class UsersController extends Controller
     /**
      * TasksController constructor.
      */
-    public function __construct(UserTransformer $transformer)
+    public function __construct(UserTransformer $transformer, UserRepository $repository)
     {
         parent::__construct($transformer);
+
+        $this->repository = $repository;
     }
 
     /**
@@ -20,11 +24,11 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $tasks = Task::paginate(15);
+        $users = User::paginate(15);
 
-        return $this->generatepaginatedResponse();
+        return $this->generatepaginatedResponse($users, ['propietari' => 'Pedro Martinez']);
     }
 
     /**
@@ -46,7 +50,12 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        Task::create([$request->all()]);   // Retorna tots els arrays
+        User::create([$request->all()]);   // Retorna tots els arrays
+        return response([
+            'error'   => false,
+            'created' => true,
+            'message' => 'Usuari creat correctament',
+        ], 200);
     }
 
     /**
@@ -58,7 +67,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        return Task::findOrFail($id);
+        $user = $this->repository->find($id);
+        return $this->transform($user);
+
     }
 
     /**
@@ -83,8 +94,12 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Task::findOrFail($id);
-        Task::create([$request->all()]);
+        User::findOrFail($id)->update($request->all());
+        return response([
+            'error'   => false,
+            'updated' => true,
+            'message' => 'User updated successfully',
+        ], 200);
     }
 
     /**
@@ -96,6 +111,11 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        Task::destroy($id);
+        User::findOrFail($id)->delete();
+        return response([
+            'error'   => false,
+            'deleted' => true,
+            'message' => 'User esborrat correctament',
+        ], 200);
     }
 }
