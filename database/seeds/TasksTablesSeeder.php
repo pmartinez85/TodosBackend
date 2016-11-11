@@ -11,7 +11,9 @@ class TasksTablesSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Task::class,30)->create();
-            //factory('App\Task')->make();
-    }
+        factory(App\User::class, 50)->create()->each(function ($user) {
+            $user->tasks()->saveMany(
+                factory(App\Task::class, 5)->create(['user_id' => $user->id])
+            );
+        });
 }

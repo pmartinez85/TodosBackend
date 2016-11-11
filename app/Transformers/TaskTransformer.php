@@ -1,8 +1,9 @@
 <?php
+namespace App\Transformers;
 
-use App\Transformers\Contracts\Transformer\Transformer;
+use App\Exceptions\IncorrectModelException;
 
-class TaskTransformer implements Transformer
+class TaskTransformer extends Transformer
 {
 
 

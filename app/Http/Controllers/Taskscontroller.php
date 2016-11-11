@@ -17,7 +17,11 @@ class TasksController extends Controller
      * TasksController constructor.
      */
     public function __construct(TaskTransformer $transformer)
+                            //(TaskTransformer $transformer, Paginator $paginator)
     {
+        //SRP single responsability principle
+        //$this->paginator = $paginator;
+        parent::__construct($transformer);
     }
 
     /**
