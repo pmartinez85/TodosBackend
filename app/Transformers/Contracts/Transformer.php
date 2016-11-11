@@ -1,8 +1,7 @@
 <?php
 
+
 namespace App\Transformers\Contracts\Transformer;
-
-
 
 interface Transformer
 {

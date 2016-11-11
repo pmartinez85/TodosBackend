@@ -2,20 +2,15 @@
 
 namespace App\Http\Controllers;
 
-
-
-
 class TaskTransformController extends Controller
 {
     protected function transform($resource)
     {
         return [
-            'name' => $resource['name'],
-            'done' => (boolean)$resource['done'],
-            'priority' => (integer)$resource['priority'],
+            'name'     => $resource['name'],
+            'done'     => (bool) $resource['done'],
+            'priority' => (int) $resource['priority'],
 
         ];
     }
-
-
 }
