@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Task;
 use Illuminate\Http\Request;
 use Response;
-use TaskTransformer;
+use App\Transformers\TaskTransformer;
 
 class Taskscontroller extends Controller
 {
