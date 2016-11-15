@@ -8,6 +8,10 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Response;
 
+/**
+ * Class Controller
+ * @package App\Http\Controllers
+ */
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -26,9 +30,10 @@ class Controller extends BaseController
     }
 
     /**
-     * @param $resource
-     *
+     * @param $resources
+     * @param array $metadata
      * @return \Illuminate\Http\JsonResponse
+     * @internal param $resource
      */
     protected function generatePaginatedResponse($resources, array $metadata = [])
     {
@@ -43,9 +48,10 @@ class Controller extends BaseController
     }
 
     /**
-     * @param $resource
-     *
+     * @param $resources
      * @return array
+     * @internal param $resource
+     *
      */
     protected function generatePaginationData($resources)
     {
@@ -71,6 +77,10 @@ class Controller extends BaseController
 //        ];
 //    }
 
+    /**
+     * @param $resources
+     * @return array
+     */
     protected function transformCollection($resources)
     {
         //Collections : Laravel collections

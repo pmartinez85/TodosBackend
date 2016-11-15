@@ -7,8 +7,16 @@
  */
 namespace App\Http\Controllers;
 
+/**
+ * Class UserTransformController
+ * @package App\Http\Controllers
+ */
 class UserTransformController extends Controller
 {
+    /**
+     * @param $resource
+     * @return array
+     */
     protected function transform($resource)
     {
         return [

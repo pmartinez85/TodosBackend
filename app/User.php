@@ -5,6 +5,10 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * Class User
+ * @package App
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -27,14 +31,23 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * @param $id
+     */
     public static function findOrFail($id)
     {
     }
 
+    /**
+     * @param $int
+     */
     public static function paginate($int)
     {
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function tasks()
     {
         return $this->hasMany(Task::class);

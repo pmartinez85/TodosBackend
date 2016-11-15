@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 
+/**
+ * Class TasksTablesSeeder
+ */
 class TasksTablesSeeder extends Seeder
 {
     /**

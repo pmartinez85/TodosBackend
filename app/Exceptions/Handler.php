@@ -12,6 +12,10 @@ use Illuminate\Validation\ValidationException;
 use Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
+/**
+ * Class Handler
+ * @package App\Exceptions
+ */
 class Handler extends ExceptionHandler
 {
     /**

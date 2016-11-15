@@ -4,8 +4,13 @@ namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
+/**
+ * Class Kernel
+ * @package App\Http
+ */
 class Kernel extends HttpKernel
 {
+    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
     /**
      * The application's global HTTP middleware stack.
      *
@@ -16,6 +21,12 @@ class Kernel extends HttpKernel
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
     ];
+    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
 
     /**
      * The application's route middleware groups.
@@ -37,6 +48,12 @@ class Kernel extends HttpKernel
             'bindings',
         ],
     ];
+    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
 
     /**
      * The application's route middleware.

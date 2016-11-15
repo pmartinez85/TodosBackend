@@ -9,10 +9,31 @@ use App\Transformers\TaskTransformer;
 
 use App\Repositories\TaskRepository;
 
+/**
+ * Exemple de documentació:
+ * Class TasksController  ->> titol
+ *
+ * Descripció de la classe!!  ->> descripció
+ *
+ * @package App\Http\Controllers ->> Etiquetes!!
+ */
+
 class TasksController extends Controller
 {
+    /**
+     * La documentacio ens diu que aquesta variable es de tipus objecte taskrepository
+     *
+     * @var TaskRepository
+     */
+
    protected $repository;
 
+
+    /**
+     * TasksController constructor.
+     * @param TaskTransformer $transformer
+     * @param TaskRepository $repository
+     */
     public function __construct(TaskTransformer $transformer, TaskRepository $repository)
 
     {
@@ -30,7 +51,7 @@ class TasksController extends Controller
 
         $tasks = Task::paginate(15);
 
-        return $this->generatePaginatedResponse($tasks, ['propietari' => 'Pedro Martinez']);
+        return $this->generatePaginatedResponse($tasks, ['propietary' => 'Pedro Martinez']);
 
     }
 
@@ -73,6 +94,7 @@ class TasksController extends Controller
     {
 
         $task = Task::findOrFail($id);
+        /** @noinspection PhpVariableVariableInspection */
         $task->$this->repository->find($id);
 
         return $this->transformer->transform($task);

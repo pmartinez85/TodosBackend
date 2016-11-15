@@ -8,10 +8,15 @@ use Illuminate\Http\Request;
 use Response;
 use TaskTransformer;
 
+/**
+ * Class UserTaskController
+ * @package App\Http\Controllers
+ */
 class UserTaskController extends BaseController
 {
     /**
      * TasksController constructor.
+     * @param TaskTransformer $transformer
      */
     public function __construct(TaskTransformer $transformer)
     {
