@@ -11,11 +11,12 @@ use App\Task;
 class TaskRepository implements Repository
 {
 
+
     /**
      * @param $id
      * @param array $columns
      */
-    public function find($id, $columns = array('*'))
+    public function find($id, $columns = ['*'])
     {
         return Task::findOrFail($id);
     }

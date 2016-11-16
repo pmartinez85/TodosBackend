@@ -35,5 +35,27 @@ const app = new Vue({
             }
         ]
     },
+    methods: {
+        reverseMessage:function () {
+            this.message = this.message.split('').reverse().join('');
+
+        },
+        fetchData:function () {
+            //xhr
+            //axios
+            var req = new XMLHttpRequest();
+            req.open('GET', 'http://localhost:8082/api/v1/task', true);
+            req.onreadystatechange = function (aEvt) {
+                if (req.readyState == 4) {
+                    if(req.status == 200)
+                        dump(req.responseText);
+                }
+            };
+        }
+    },
+    created: function(){
+        console.log('App created');
+        this.fetchData()
+    }
 });
 
