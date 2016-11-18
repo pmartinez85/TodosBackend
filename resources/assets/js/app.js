@@ -41,13 +41,28 @@ const app = new Vue({
 
         },
         fetchData:function () {
-            //xhr
-            //axios
-            // var req = new XMLHttpRequest();
-            // req.open('GET', 'http://localhost:8083/api/v1/task', false);
-            // req.send(null);
-            // if (req.status == 200)
-            //     dump(req.responseText);
+            const app = new Vue({
+                el: '#app',
+                data: {
+                    todos: []
+                },
+                methods: {
+                    fetchData: function() {
+                        // GET /someUrl
+                        this.$http.get('/api/v1/task').then((response) => {
+                            this.todos = response.data.data;
+                    }, (response) => {
+                            // error callback
+                            sweetAlert("Oops...", "Something went wrong!", "error");
+                            console.log(response);
+                        });
+                    }
+                },
+                created: function() {
+                    console.log('Component created!');
+                    this.fetchData()
+                }
+            });
         }
     },
     created: function(){

@@ -6,7 +6,7 @@
 
 
 @section('main-content')
-    <div id="app">
+    <div id="app" xmlns:v-on="http://www.w3.org/1999/xhtml">
         <p v-show="seen">@{{message}}</p>
         <input type="text" v-model="message">
         <button v-on:click="reverseMessage">Reverse</button>

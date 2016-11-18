@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Transformers\Contracts\Transformer;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -40,7 +41,7 @@ class Controller extends BaseController
         $paginationData = $this->generatePaginationData($resources);
         $data = [
 
-            'data' => $this->transformer->transformCollection($resources->items())
+            'data' => $this->transformer->transformCollection($resources->items()),
 
         ];
 

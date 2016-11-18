@@ -10,21 +10,21 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Task extends Model
 {
-    protected $fillable = ['name', 'done', 'priority'];
+    protected $fillable = ['name', 'done', 'priority', 'user_id'];
 
     /**
      * @param $id
      */
-    public static function findOrFail($id)
-    {
-    }
-
-    /**
-     * @param $int
-     */
-    public static function paginate($int)
-    {
-    }
+//    public static function findOrFail($id)
+//    {
+//    }
+//
+//    /**
+//     * @param $int
+//     */
+//    public static function paginate($int)
+//    {
+//    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

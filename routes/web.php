@@ -6,5 +6,5 @@ Route::group(['middleware' => 'auth'],function() {
 });
 
 Route::get('/', function () {
-    return view('wellcome');
+    return view('welcome');
 });
