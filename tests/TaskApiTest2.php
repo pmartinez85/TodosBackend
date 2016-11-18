@@ -84,6 +84,7 @@ class TasksApiTest extends TestCase
 
         $this->json('GET', $this->uri)
             ->seeJsonStructure([
+                'propietari', 'total', 'per_page', 'current_page', 'last_page', 'next_page_url', 'prev_page_url',
                 'data' => [
                     '*' => [
                         'name', 'done', 'priority',

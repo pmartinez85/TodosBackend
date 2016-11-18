@@ -6,7 +6,6 @@ use App\Task;
 use Illuminate\Http\Request;
 use Response;
 use App\Transformers\TaskTransformer;
-
 use App\Repositories\TaskRepository;
 
 /**
@@ -41,14 +40,16 @@ class TasksController extends Controller
 
         $this->repository = $repository;
     }
+
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-
+        //abort(500);
         $tasks = Task::paginate(15);
 
         return $this->generatePaginatedResponse($tasks, ['propietary' => 'Pedro Martinez']);
@@ -76,11 +77,11 @@ class TasksController extends Controller
     {
         Task::create($request->all());
 
-        return response([
-            'error'   => false,
-            'created' => true,
-            'message' => 'Tasca creada correctament',
-        ], 200);
+//        return response([
+//            'error'   => false,
+//            'created' => true,
+//            'message' => 'Tasca creada correctament',
+//        ], 200);
     }
 
     /**
@@ -93,9 +94,9 @@ class TasksController extends Controller
     public function show($id)
     {
 
-        $task = Task::findOrFail($id);
+       // $task = Task::findOrFail($id);
         /** @noinspection PhpVariableVariableInspection */
-        $task->$this->repository->find($id);
+        $task = $this->repository->find($id);
 
         return $this->transformer->transform($task);
     }

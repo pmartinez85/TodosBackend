@@ -14,58 +14,9 @@ require('./bootstrap');
  */
 
 Vue.component('example', require('./components/Example.vue'));
-Vue.component('example', require('./components/todos.vue'));
+Vue.component('todos', require('./components/todos.vue'));
 
 const app = new Vue({
-    el: '#app',
-    data: {
-        message: 'Jelou Vue!',
-        seen: false,
-        todos: [
-            // { name: 'Learn Javascript',
-            //     done: true,
-            //     priority: 4
-            // },
-            // { name: 'Learn PHP',
-            //     done: false,
-            //     priority: 5
-            // },
-            // { name: 'Buy bread',
-            //     done: false,
-            //     priority: 1
-            // }
-        ]
-    },
-    methods: {
-        reverseMessage:function () {
-            this.message = this.message.split('').reverse().join('');
-
-        },
-        fetchData:function () {
-            const app = new Vue({
-                el: '#app',
-                data: {
-                    todos: []
-                },
-                methods: {
-                    fetchData: function() {
-                        // GET /someUrl
-                        this.$http.get('/api/v1/tasks').then((response) => {
-                            this.todos = response.data.data;
-                    }, (response) => {
-                            // error callback
-                            sweetAlert("Oops...", "Something went wrong!", "error");
-                            console.log(response);
-                        });
-                    }
-                },
-
-            });
-        }
-    },
-    created: function(){
-        console.log('App created');
-        this.fetchData()
-    }
+    el: '#app'
 });
 
