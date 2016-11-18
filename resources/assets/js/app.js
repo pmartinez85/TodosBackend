@@ -14,25 +14,26 @@ require('./bootstrap');
  */
 
 Vue.component('example', require('./components/Example.vue'));
+Vue.component('example', require('./components/todos.vue'));
 
 const app = new Vue({
     el: '#app',
     data: {
-        message: 'Hello Vue!',
+        message: 'Jelou Vue!',
         seen: false,
         todos: [
-            { name: 'Learn Javascript',
-                done: true,
-                priority: 4
-            },
-            { name: 'Learn PHP',
-                done: false,
-                priority: 5
-            },
-            { name: 'Buy bread',
-                done: false,
-                priority: 1
-            }
+            // { name: 'Learn Javascript',
+            //     done: true,
+            //     priority: 4
+            // },
+            // { name: 'Learn PHP',
+            //     done: false,
+            //     priority: 5
+            // },
+            // { name: 'Buy bread',
+            //     done: false,
+            //     priority: 1
+            // }
         ]
     },
     methods: {
@@ -49,7 +50,7 @@ const app = new Vue({
                 methods: {
                     fetchData: function() {
                         // GET /someUrl
-                        this.$http.get('/api/v1/task').then((response) => {
+                        this.$http.get('/api/v1/tasks').then((response) => {
                             this.todos = response.data.data;
                     }, (response) => {
                             // error callback
@@ -58,10 +59,7 @@ const app = new Vue({
                         });
                     }
                 },
-                created: function() {
-                    console.log('Component created!');
-                    this.fetchData()
-                }
+
             });
         }
     },
