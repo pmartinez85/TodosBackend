@@ -25,6 +25,7 @@ class UserTaskController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param $id
      * @return \Illuminate\Http\Response
      */
     public function index($id)
@@ -56,6 +57,7 @@ class UserTaskController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      *
+     * @param $iduser
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $iduser)
@@ -74,9 +76,10 @@ class UserTaskController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     *
+     * @param $iduser
+     * @param $idtask
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function show($iduser, $idtask)
     {
@@ -89,9 +92,11 @@ class UserTaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
-     *
+     * @param Request $request
+     * @param $iduser
+     * @param $idtask
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
     public function edit(Request $request, $iduser, $idtask)
     {
