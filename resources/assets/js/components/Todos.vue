@@ -1,11 +1,11 @@
 <template>
-    <div id="app" xmlns:v-on="http://www.w3.org/1999/xhtml">
+    <div id="app">
         <p v-show="seen">{{message}}</p>
         <input type="text" v-model="message">
         <button v-on:click="reverseMessage">Reverse</button>
 
         <ol>
-            <li v-for="todo in todos">{{todo.name}} | {{todo.priority}} | {{todo.done}}</li>
+            <li v-for="todo in todos">{{ todo.name }} | {{ todo.priority }} | {{ todo.done }}</li>
         </ol>
     </div>
 </template>
@@ -20,12 +20,13 @@
         return {
             message: 'Hola que ase',
             seen: false,
-            todos: []
+            todos: [
+            ],
         }
     },
         created() {
         console.log('Component Todolist creat');
-        //this.fetchData();
+        this.fetchData();
     },
     methods: {
         reverseMessage:function () {
