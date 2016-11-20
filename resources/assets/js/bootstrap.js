@@ -22,7 +22,6 @@ require('icheck');
 
 window.Vue = require('vue');
 //require('vue-resource');
-
 window.axios = require('axios');
 Vue.prototype.$http = axios;
 

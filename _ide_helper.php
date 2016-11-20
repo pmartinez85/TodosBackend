@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.19 on 2016-10-28.
+ * Generated for Laravel 5.3.19 on 2016-11-20.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -12310,6 +12310,131 @@ namespace {
         public static function offsetUnset($key){
             //Method inherited from \DebugBar\DebugBar            
             return \Barryvdh\Debugbar\LaravelDebugbar::offsetUnset($key);
+        }
+        
+    }
+
+
+    class AdminLTE extends \Acacha\AdminLTETemplateLaravel\Facades\AdminLTE{
+        
+        /**
+         * Home controller copy path.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function homeController(){
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::homeController();
+        }
+        
+        /**
+         * Auth register controller copy path.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function registerController(){
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::registerController();
+        }
+        
+        /**
+         * Auth login controller copy path.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function loginController(){
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::loginController();
+        }
+        
+        /**
+         * Auth forgot password controller copy path.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function forgotPasswordController(){
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::forgotPasswordController();
+        }
+        
+        /**
+         * Auth reset password controller copy path.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function resetPasswordController(){
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::resetPasswordController();
+        }
+        
+        /**
+         * Public assets copy path.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function publicAssets(){
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::publicAssets();
+        }
+        
+        /**
+         * Only views to overwrite.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function viewsToOverwrite(){
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::viewsToOverwrite();
+        }
+        
+        /**
+         * Views copy path.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function views(){
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::views();
+        }
+        
+        /**
+         * Tests copy path.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function tests(){
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::tests();
+        }
+        
+        /**
+         * Resource assets copy path.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function resourceAssets(){
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::resourceAssets();
+        }
+        
+        /**
+         * Languages assets copy path.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function languages(){
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::languages();
+        }
+        
+        /**
+         * Gravatar path.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function gravatar(){
+            return \Acacha\AdminLTETemplateLaravel\AdminLTE::gravatar();
         }
         
     }
