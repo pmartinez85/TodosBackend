@@ -41,7 +41,7 @@ class Controller extends BaseController
         $paginationData = $this->generatePaginationData($resources);
         $data = [
 
-            'data' => $this->transformer->transformCollection($resources->items()),
+            'data' => $this->transformer->transformCollections($resources->items()),
 
         ];
 

@@ -77,11 +77,11 @@ class TasksController extends Controller
     {
         Task::create($request->all());
 
-//        return response([
-//            'error'   => false,
-//            'created' => true,
-//            'message' => 'Tasca creada correctament',
-//        ], 200);
+        return response([
+            'error'   => false,
+            'created' => true,
+            'message' => 'Tasca creada correctament',
+        ], 200);
     }
 
     /**

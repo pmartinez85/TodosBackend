@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Task;
-use Barryvdh\Debugbar\Controllers\BaseController;
+use App\User;
 use Illuminate\Http\Request;
-use Response;
-use TaskTransformer;
+use App\Transformers\TaskTransformer;
 
 /**
  * Class UserTaskController
  * @package App\Http\Controllers
  */
-class UserTaskController extends BaseController
+class UserTaskController extends Controller
 {
     /**
      * TasksController constructor.
@@ -20,6 +19,7 @@ class UserTaskController extends BaseController
      */
     public function __construct(TaskTransformer $transformer)
     {
+        parent::__construct($transformer);
     }
 
     /**
@@ -27,16 +27,18 @@ class UserTaskController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         //No metadata
         //Pagination
         //No error message
         //Transformations: hem de transformar el que ensenyem
-        $tasks = Task::paginate(15);
+        dd($id);
+        $user = User::findOrFail($id);
+        $tasks = $user->tasks()->paginate(15);
 
-        return $this->generatePaginatedResponse($tasks, ['propietari' => 'David Martinez']);
-//        return Task::paginate($request->input('per_page'));
+        return $this->generatePaginatedResponse($tasks, ['propietari' => 'Pedro Martínez']);
+
     }
 
     /**
@@ -56,15 +58,16 @@ class UserTaskController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $iduser)
     {
         //        $request->input('name')
-        Task::create($request->all());
+        $user = User::findOrFail($iduser);
+        Task::create($request->only(['name', 'done', 'priority', $user->id]));
 
         return response([
             'error'   => false,
             'created' => true,
-            'message' => 'Task created successfully',
+            'message' => 'Tasca del usuari creada correctament',
         ], 200);
     }
 
@@ -75,28 +78,10 @@ class UserTaskController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($iduser, $idtask)
     {
-        //        try {
-//            return Task::findOrFail($id);
-//        } catch (\Exception $e) {
-//            return Response::json([
-//               'error' => 'Hi ha hagut una excepció',
-//               'code'  => 10
-//            ],404);
-//        }
-
-//        $task = Task::find($id);
-//
-//        if($task != null){
-//            return $task;
-//        }
-//
-//        return Response::json([
-//               'error' => 'Hi ha hagut una excepció',
-//               'code'  => 10
-//            ],404);
-        $task = Task::findOrFail($id);
+        $user = User::findOrFail($iduser);
+        $task = $user->tasks()->findOrFail($idtask);
 
         return $this->transform($task);
     }
@@ -108,45 +93,42 @@ class UserTaskController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $iduser, $idtask)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        Task::findOrFail($id)->update($request->all());
+        $user = User::findOrFail($iduser);
+        $task = $user->tasks()->findOrFail($idtask);
+        $task->edit($request->only(['name', 'done', 'priority', 'user_id']));
 
         return response([
             'error'   => false,
             'updated' => true,
-            'message' => 'Task updated successfully',
+            'message' => 'Tasca del usuari editada correctament',
         ], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function update(Request $request, $iduser, $idtask)
     {
-        Task::findOrFail($id)->delete();
+        $user = User::findOrFail($iduser);
+        $task = $user->tasks()->findOrFail($idtask);
+        $task->update($request->only(['name', 'done', 'priority', 'user_id']));
+
+        return response([
+            'error'   => false,
+            'updated' => true,
+            'message' => 'Tasca del usuari actualitzada correctament',
+        ], 200);
+    }
+
+    public function destroy($iduser, $idtask)
+    {
+        $user = User::findOrFail($iduser);
+        $task = $user->tasks()->findOrFail($idtask);
+        $task->destroy();
 
         return response([
             'error'   => false,
             'deleted' => true,
-            'message' => 'Task deleted successfully',
+            'message' => 'Tasca esborrada correctament',
         ], 200);
     }
 }
