@@ -46,10 +46,10 @@ return [
             'provider' => 'users',
         ],
 
-        'api_token' => [
-            'driver'   => 'token',
-            'provider' => 'users',
-        ],
+//        'api_token' => [
+//            'driver'   => 'token',
+//            'provider' => 'users',
+//        ],
     ],
 
     /*
