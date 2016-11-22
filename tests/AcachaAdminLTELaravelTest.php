@@ -247,4 +247,5 @@ class AcachaAdminLTELaravelTest extends TestCase
             ->press('Send Password Reset Link')
             ->see('There were some problems with your input');
     }
+
 }
