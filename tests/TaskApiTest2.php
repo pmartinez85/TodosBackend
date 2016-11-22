@@ -22,7 +22,8 @@ class TasksApiTest extends TestCase
     /**
      * Seed database with tasks.
      *
-     * @param int $number Of Tasks to create
+     * @param int $numberOfTasks
+     * @internal param int $number Of Tasks to create
      */
 
     protected function seedDatabaseWithTasks($numberOfTasks = self::DEFAULT_NUMBER_OF_TASKS)
@@ -82,6 +83,7 @@ class TasksApiTest extends TestCase
         //Seed database
         $this->seedDatabaseWithTasks();
 
+        /** @var TYPE_NAME $this */
         $this->json('GET', $this->uri)
             ->seeJsonStructure([
                 'propietari', 'total', 'per_page', 'current_page', 'last_page', 'next_page_url', 'prev_page_url',

@@ -2,6 +2,9 @@
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
+/**
+ * Class TaskApiTest
+ */
 class TaskApiTest extends TestCase
 {
     protected $uri = '/api/task';
