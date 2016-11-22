@@ -1,0 +1,35 @@
+TAP version 13
+ok 1 - UsersApiTest::testRetrieveAllUsers
+not ok 2 - Failure: UsersApiTest::testRetrieveOneUser
+  ---
+  message: 'Failed asserting that an array has the key ''email''.'
+  severity: fail
+  ...
+not ok 3 - Failure: UsersApiTest::testCreateNewUser
+  ---
+  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
+  severity: fail
+  ...
+ok 4 - UsersApiTest::testUpdateExistingUser
+ok 5 - UsersApiTest::testDeleteExistingUser
+not ok 6 - Warning: Warning
+not ok 7 - Failure: UsersApiTest::testGetNotExistingUser
+  ---
+  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
+  severity: fail
+  ...
+not ok 8 - Failure: UsersApiTest::testUpdateNotExistingUser
+  ---
+  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
+  severity: fail
+  ...
+not ok 9 - Failure: UsersApiTest::testDeleteNotExistingUser
+  ---
+  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
+  severity: fail
+  ...
+ok 10 - UsersApiTest::testPagination
+ok 11 - UsersApiTest::testNameIsRequiredAndDefaultValues
+ok 12 - UsersApiTest::testPriorityHasToBeAnInteger
+ok 13 - UsersApiTest::testDoneHasToBeBoolean
+1..13
