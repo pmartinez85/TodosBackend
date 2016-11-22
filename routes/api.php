@@ -1,7 +1,7 @@
 <?php
 
 
-Route::group(['prefix' => 'v1'], function () {
+Route::group(['prefix' => 'v1', 'middleware' => ['auth.basic']], function () {
     Route::resource('task', 'Taskscontroller');
     Route::resource('user', 'UsersController');
     Route::resource('user.task', 'UserTaskController');
