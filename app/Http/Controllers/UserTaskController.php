@@ -30,11 +30,6 @@ class UserTaskController extends Controller
      */
     public function index($id)
     {
-        //No metadata
-        //Pagination
-        //No error message
-        //Transformations: hem de transformar el que ensenyem
-        dd($id);
         $user = User::findOrFail($id);
         $tasks = $user->tasks()->paginate(15);
 

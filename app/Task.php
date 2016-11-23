@@ -15,16 +15,16 @@ class Task extends Model
     /**
      * @param $id
      */
-    public static function findOrFail($id)
-    {
-    }
-
-    /**
-     * @param $int
-     */
-    public static function paginate($int)
-    {
-    }
+//    public static function findOrFail($id)
+//    {
+//    }
+//
+//    /**
+//     * @param $int
+//     */
+//    public static function paginate($int)
+//    {
+//    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
