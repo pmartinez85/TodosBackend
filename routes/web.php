@@ -5,12 +5,12 @@ Route::group(['middleware' => 'auth'],function() {
         return view('welcome');
     });
 
+    Route::get('/tasks', function () {
+        return view('tasks');
+    });
+
+    Route::get('/profile/tokens', function () {
+        return view('tokens');
+    });
 });
 
-Route::get('/tasks', function () {
-    return view('tasks');
-});
-
-Route::get('/profile/tokens', function () {
-    return view('tokens');
-});

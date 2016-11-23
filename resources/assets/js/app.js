@@ -14,10 +14,6 @@ require('./bootstrap');
  */
 
 Vue.component(
-    'example',
-    require('./components/Example.vue')
-);
-Vue.component(
     'todos',
     require('./components/Todos.vue')
 );
