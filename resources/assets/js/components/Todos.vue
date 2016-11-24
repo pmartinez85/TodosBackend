@@ -1,12 +1,39 @@
 <template>
-    <div id="app">
-        <p v-show="seen">{{message}}</p>
-        <input type="text" v-model="message">
-        <button v-on:click="reverseMessage">Reverse</button>
-
-        <ol>
-            <li v-for="todo in todos">{{ todo.name }} | {{ todo.priority }} | {{ todo.done }}</li>
-        </ol>
+    <div>
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tasques</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr class="info">
+                        <th style="width: 20px">ID</th>
+                        <th>Tasca</th>
+                        <th>Prioritat</th>
+                        <th>Estat</th>
+                        <th>Progres</th>
+                        <th style="width: 40px">Label_Into</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(todo, index) in todos">
+                        <td class="active">{{index + 1}}</td>
+                        <td class="warning">{{todo.name}}</td>
+                        <td class="danger">{{todo.priority}}</td>
+                        <td class="success">{{todo.done}}</td>
+                        <td>
+                            <div class="progress progress-xs">
+                                <div class="progress-bar progress-bar-danger" style="width: 85%"></div>
+                            </div>
+                        </td>
+                        <td><span class="badge bg-blue">85%</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </template>
 
