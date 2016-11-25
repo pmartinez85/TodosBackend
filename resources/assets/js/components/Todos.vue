@@ -1,21 +1,33 @@
-<template>
+<template xmlns:v-on="http://www.w3.org/1999/xhtml">
     <div>
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">Tasques</h3>
             </div>
             <div class="btn-group">
-                <button type="button" class="btn btn-default">Filters</button>
+                <button type="button" class="btn btn-default">{{visibility}}</button>
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret"></span>
+                   <span class="caret"> </span>
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#/all">All</a></li>
-                    <li><a href="#/active">Active</a></li>
-                    <li><a href="#/completed">Completed</a></li>
+                    <li><a href="#"  v-on:click="setVisibility('all')">Tot</a></li>
+                    <li><a href="#"  @click="setVisibility('active')">Actiu</a></li>
+                    <li><a href="#/" @click="setVisibility('completed')">Completat</a></li>
                 </ul>
             </div>
+            <form role="form" action="#">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="name" class="form-control" id="name" placeholder="Enter task"
+                        v-model="newTodo"
+                        @keyup.enter="addTodo">
+                    </div>
+                </div>
+                <!-- /.box-body -->
+
+            </form>
             <!-- /.box-header -->
             <div class="box-body">
                 <table class="table table-bordered">
@@ -66,11 +78,10 @@
     export default {
     data(){
         return {
-            message: 'Hola que ase',
-            seen: false,
-            visibility: 'all',
             todos: [],
-             //'active' 'completed'
+            visibility: 'all',
+            newTodo: ''
+
         }
     },
     computed: {
@@ -88,10 +99,10 @@
             },
             completed: function(todos){
             return todos.filter(function(todo){
-            return todo.done;
+                return todo.done;
             });
 
-            }
+           }
         }
 
         return filters[this.visibility](this.todos);
@@ -103,18 +114,33 @@
         this.fetchData();
     },
     methods: {
-        reverseMessage:function () {
-        this.message = this.message.split('').reverse().join('');
+        addTodo: function() {
+           var value = this.newTodo && this.newTodo.trim();
+           if (!value) {
+               return;
+                }
+                this.todos.push({
+                    name: value,
+                    priority: 1,
+                    done: false
+                });
+                this.newTodo = '';
+            },
+            setVisibility: function(visibility) {
+                this.visibility = visibility;
+            },
+            reverseMessage:function () {
+                this.message = this.message.split('').reverse().join('');
         },
         fetchData:function (){
-
-         // GET /someUrl
+        // GET /someUrl
             this.$http.get('/api/v1/task').then((response) => {
+                console.log(response);
             this.todos = response.data.data;
             }, (response) => {
-        // error callback
-            sweetAlert("Oops...", "Something went wrong!", "error");
-            console.log(response);
+                // error callback
+                sweetAlert("Oops...", "Something went wrong!", "error");
+                console.log(response);
              });
 
         }
