@@ -11,22 +11,20 @@
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#"  v-on:click="setVisibility('all')">Tot</a></li>
-                    <li><a href="#"  @click="setVisibility('active')">Actiu</a></li>
-                    <li><a href="#/" @click="setVisibility('completed')">Completat</a></li>
+                    <li><a href="#"  v-on:click="setVisibility('totes')">Totes</a></li>
+                    <li><a href="#"  @click="setVisibility('actives')">Actives</a></li>
+                    <li><a href="#/" @click="setVisibility('completades')">Completades</a></li>
                 </ul>
             </div>
             <form role="form" action="#">
                 <div class="box-body">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="name" class="form-control" id="name" placeholder="Enter task"
+                        <input type="text" class="form-control" id="name" placeholder="Escriu la tasca a crear"
                         v-model="newTodo"
                         @keyup.enter="addTodo">
                     </div>
                 </div>
-                <!-- /.box-body -->
-
             </form>
             <!-- /.box-header -->
             <div class="box-body">
@@ -79,7 +77,7 @@
     data(){
         return {
             todos: [],
-            visibility: 'all',
+            visibility: 'totes',
             newTodo: ''
 
         }
@@ -88,16 +86,16 @@
         filteredTodos: function() {
 
         var filters = {
-            all: function(todos){
+            totes: function(todos){
                 return todos;
             },
-            active: function(todos){
+            actives: function(todos){
             return todos.filter(function(todo){
                 return !todo.done;
             });
 
             },
-            completed: function(todos){
+            completades: function(todos){
             return todos.filter(function(todo){
                 return todo.done;
             });
@@ -123,6 +121,17 @@
                     name: value,
                     priority: 1,
                     done: false
+                });
+                this.newTodo = '';
+            },
+            dropTodo: function() {
+           var value = this.newTodo && this.newTodo.trim();
+           if (!value) {
+               return;
+                }
+                this.todos.delete({
+                    priority: value,
+
                 });
                 this.newTodo = '';
             },
