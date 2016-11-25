@@ -18,7 +18,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr v-for="(todo, index) in todos">
+                    <tr v-for="(todo, index) in filteredTodos">
                         <td class="active">{{index + 1}}</td>
                         <td class="warning">{{todo.name}}</td>
                         <td class="danger">{{todo.priority}}</td>
@@ -56,11 +56,37 @@
         return {
             message: 'Hola que ase',
             seen: false,
-            todos: [
-            ],
+            visibility: 'all',
+            todos: [],
+             //'active' 'completed'
         }
     },
-        created() {
+    computed: {
+        filteredTodos: function() {
+
+        var filters = {
+            all: function(todos){
+                return todos;
+            },
+            active: function(todos){
+            return todos.filter(function(todo){
+                return !todo.done;
+            });
+
+            },
+            completed: function(todos){
+            return todos.filter(function(todo){
+            return todo.done;
+            });
+
+            }
+        }
+
+        return filters[this.visibility](this.todos);
+
+        }
+    },
+    created() {
         console.log('Component Todolist creat');
         this.fetchData();
     },
@@ -82,56 +108,4 @@
         }
     }
 }
-
-
 </script>
-
-<!--data: {-->
-<!--message: 'Jelou Vue!',-->
-<!--seen: false,-->
-<!--todos: [-->
-<!--{ name: 'Learn Javascript',-->
-<!--done: true,-->
-<!--priority: 4-->
-<!--},-->
-<!--{ name: 'Learn PHP',-->
-<!--done: false,-->
-<!--priority: 5-->
-<!--},-->
-<!--{ name: 'Buy bread',-->
-<!--done: false,-->
-<!--priority: 1-->
-<!--}-->
-<!--]-->
-<!--},-->
-<!--methods: {-->
-<!--reverseMessage:function () {-->
-<!--this.message = this.message.split('').reverse().join('');-->
-
-<!--},-->
-<!--fetchData:function () {-->
-<!--const app = new Vue({-->
-<!--el: '#app',-->
-<!--data: {-->
-<!--todos: []-->
-<!--},-->
-<!--methods: {-->
-<!--fetchData: function() {-->
-<!--// GET /someUrl-->
-<!--this.$http.get('/api/v1/tasks').then((response) => {-->
-<!--this.todos = response.data.data;-->
-<!--}, (response) => {-->
-<!--// error callback-->
-<!--sweetAlert("Oops...", "Something went wrong!", "error");-->
-<!--console.log(response);-->
-<!--});-->
-<!--}-->
-<!--},-->
-
-<!--});-->
-<!--}-->
-<!--},-->
-<!--created: function(){-->
-<!--console.log('App created');-->
-<!--this.fetchData()-->
-<!--}-->
