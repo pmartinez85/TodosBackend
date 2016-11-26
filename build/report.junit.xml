@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="UsersApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php" tests="13" assertions="28" failures="5" errors="0" time="0.886953">
+    <testcase name="testRetrieveAllUsers" class="UsersApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php" line="71" assertions="20" time="0.194236"/>
+    <testcase name="testRetrieveOneUser" class="UsersApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php" line="96" assertions="2" time="0.113542">
+      <failure type="PHPUnit_Framework_ExpectationFailedException">UsersApiTest::testRetrieveOneUser
+Failed asserting that an array has the key 'email'.
+
+/home/pedro/Code/Todos/TodosBackend/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:369
+/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php:102
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:185
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:115
+</failure>
+    </testcase>
+    <testcase name="testCreateNewUser" class="UsersApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php" line="115" assertions="0" time="0.126243">
+      <failure type="PHPUnit_Framework_AssertionFailedError">UsersApiTest::testCreateNewUser
+Invalid JSON was returned from the route. Perhaps an exception was thrown?
+
+/home/pedro/Code/Todos/TodosBackend/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:426
+/home/pedro/Code/Todos/TodosBackend/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:298
+/home/pedro/Code/Todos/TodosBackend/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:324
+/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php:120
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:185
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:115
+</failure>
+    </testcase>
+    <testcase name="testUpdateExistingUser" class="UsersApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php" line="131" assertions="3" time="0.120310"/>
+    <testcase name="testDeleteExistingUser" class="UsersApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php" line="148" assertions="3" time="0.133851"/>
+    <testcase name="Warning" assertions="0" time="0.000870"/>
+    <testcase name="testGetNotExistingUser" class="UsersApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php" line="177" assertions="0" time="0.031902">
+      <failure type="PHPUnit_Framework_AssertionFailedError">UsersApiTest::testGetNotExistingUser
+Invalid JSON was returned from the route. Perhaps an exception was thrown?
+
+/home/pedro/Code/Todos/TodosBackend/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:426
+/home/pedro/Code/Todos/TodosBackend/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:298
+/home/pedro/Code/Todos/TodosBackend/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:324
+/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php:166
+/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php:179
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:185
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:115
+</failure>
+    </testcase>
+    <testcase name="testUpdateNotExistingUser" class="UsersApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php" line="188" assertions="0" time="0.027188">
+      <failure type="PHPUnit_Framework_AssertionFailedError">UsersApiTest::testUpdateNotExistingUser
+Invalid JSON was returned from the route. Perhaps an exception was thrown?
+
+/home/pedro/Code/Todos/TodosBackend/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:426
+/home/pedro/Code/Todos/TodosBackend/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:298
+/home/pedro/Code/Todos/TodosBackend/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:324
+/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php:166
+/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php:190
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:185
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:115
+</failure>
+    </testcase>
+    <testcase name="testDeleteNotExistingUser" class="UsersApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php" line="199" assertions="0" time="0.026825">
+      <failure type="PHPUnit_Framework_AssertionFailedError">UsersApiTest::testDeleteNotExistingUser
+Invalid JSON was returned from the route. Perhaps an exception was thrown?
+
+/home/pedro/Code/Todos/TodosBackend/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:426
+/home/pedro/Code/Todos/TodosBackend/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:298
+/home/pedro/Code/Todos/TodosBackend/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:324
+/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php:166
+/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php:201
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:185
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:115
+</failure>
+    </testcase>
+    <testcase name="testPagination" class="UsersApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php" line="208" assertions="0" time="0.025741"/>
+    <testcase name="testNameIsRequiredAndDefaultValues" class="UsersApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php" line="218" assertions="0" time="0.027451"/>
+    <testcase name="testPriorityHasToBeAnInteger" class="UsersApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php" line="227" assertions="0" time="0.031131"/>
+    <testcase name="testDoneHasToBeBoolean" class="UsersApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/UserApitest.php" line="236" assertions="0" time="0.027663"/>
+  </testsuite>
+</testsuites>

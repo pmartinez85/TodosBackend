@@ -1,6 +1,9 @@
 <?php
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
+/**
+ * Class UsersApiTest
+ */
 class UsersApiTest extends TestCase
 {
     use DatabaseMigrations;

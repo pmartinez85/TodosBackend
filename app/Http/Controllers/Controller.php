@@ -56,6 +56,7 @@ class Controller extends BaseController
      */
     protected function generatePaginationData($resources)
     {
+        /** @var TYPE_NAME $resources */
         $paginationData = [
             'total'         => $resources->total(),
             'per_page'      => $resources->perPage(),
@@ -63,6 +64,8 @@ class Controller extends BaseController
             'last_page'     => $resources->lastPage(),
             'next_page_url' => $resources->nextPageUrl(),
             'prev_page_url' => $resources->previousPageUrl(),
+            'from'          => $resources->firstItem(),
+            'to'            => $resources->lastItem(),
         ];
 
         return $paginationData;

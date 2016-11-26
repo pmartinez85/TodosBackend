@@ -42,17 +42,13 @@ class TasksController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Request $request)
+    public function index()
     {
-        //abort(500);
         $tasks = Task::paginate(15);
 
-        return $this->generatePaginatedResponse($tasks, ['propietary' => 'Pedro Martinez']);
+        return $this->generatePaginatedResponse($tasks, ['propietari' => 'Pedro Martinez']);
 
     }
 
