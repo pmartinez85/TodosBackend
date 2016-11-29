@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="TodosBackend Test Suite" tests="15" assertions="7" failures="8" errors="1" time="6.424788">
-    <testsuite name="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" tests="13" assertions="7" failures="6" errors="1" time="5.250059">
-      <testcase name="testRetrieveAllTasks" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="97" assertions="0" time="0.644480">
+  <testsuite name="TodosBackend Test Suite" tests="15" assertions="7" failures="8" errors="1" time="6.182188">
+    <testsuite name="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" tests="13" assertions="7" failures="6" errors="1" time="5.015817">
+      <testcase name="testRetrieveAllTasks" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="97" assertions="0" time="0.481315">
         <error type="PHPUnit_Framework_ExceptionWrapper">TasksApiTest::testRetrieveAllTasks
 Error: Call to a member function json() on null
 
@@ -11,7 +11,7 @@ Error: Call to a member function json() on null
 /home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:115
 </error>
       </testcase>
-      <testcase name="testRetrieveOneTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="125" assertions="0" time="0.364988">
+      <testcase name="testRetrieveOneTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="125" assertions="0" time="0.318978">
         <failure type="PHPUnit_Framework_AssertionFailedError">TasksApiTest::testRetrieveOneTask
 Invalid JSON was returned from the route. Perhaps an exception was thrown?
 
@@ -22,8 +22,8 @@ Invalid JSON was returned from the route. Perhaps an exception was thrown?
 /home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:115
 </failure>
       </testcase>
-      <testcase name="testCreateNewTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="150" assertions="3" time="0.343971"/>
-      <testcase name="testUpdateExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="168" assertions="0" time="0.358511">
+      <testcase name="testCreateNewTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="150" assertions="3" time="0.343145"/>
+      <testcase name="testUpdateExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="168" assertions="0" time="0.377638">
         <failure type="PHPUnit_Framework_AssertionFailedError">TasksApiTest::testUpdateExistingTask
 Invalid JSON was returned from the route. Perhaps an exception was thrown?
 
@@ -35,7 +35,7 @@ Invalid JSON was returned from the route. Perhaps an exception was thrown?
 /home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:115
 </failure>
       </testcase>
-      <testcase name="testDeleteExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="186" assertions="0" time="0.378827">
+      <testcase name="testDeleteExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="186" assertions="0" time="0.377206">
         <failure type="PHPUnit_Framework_AssertionFailedError">TasksApiTest::testDeleteExistingTask
 Invalid JSON was returned from the route. Perhaps an exception was thrown?
 
@@ -47,8 +47,8 @@ Invalid JSON was returned from the route. Perhaps an exception was thrown?
 /home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:115
 </failure>
       </testcase>
-      <testcase name="Warning" assertions="0" time="0.007667"/>
-      <testcase name="testGetNotExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="215" assertions="0" time="0.407797">
+      <testcase name="Warning" assertions="0" time="0.006404"/>
+      <testcase name="testGetNotExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="215" assertions="0" time="0.390151">
         <failure type="PHPUnit_Framework_AssertionFailedError">TasksApiTest::testGetNotExistingTask
 Invalid JSON was returned from the route. Perhaps an exception was thrown?
 
@@ -61,7 +61,7 @@ Invalid JSON was returned from the route. Perhaps an exception was thrown?
 /home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:115
 </failure>
       </testcase>
-      <testcase name="testUpdateNotExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="226" assertions="0" time="0.410326">
+      <testcase name="testUpdateNotExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="226" assertions="0" time="0.418056">
         <failure type="PHPUnit_Framework_AssertionFailedError">TasksApiTest::testUpdateNotExistingTask
 Invalid JSON was returned from the route. Perhaps an exception was thrown?
 
@@ -74,7 +74,7 @@ Invalid JSON was returned from the route. Perhaps an exception was thrown?
 /home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:115
 </failure>
       </testcase>
-      <testcase name="testDeleteNotExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="237" assertions="0" time="0.476595">
+      <testcase name="testDeleteNotExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="237" assertions="0" time="0.477245">
         <failure type="PHPUnit_Framework_AssertionFailedError">TasksApiTest::testDeleteNotExistingTask
 Invalid JSON was returned from the route. Perhaps an exception was thrown?
 
@@ -87,13 +87,13 @@ Invalid JSON was returned from the route. Perhaps an exception was thrown?
 /home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:115
 </failure>
       </testcase>
-      <testcase name="testPagination" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="246" assertions="1" time="0.432482"/>
-      <testcase name="testNameIsRequiredAndDefaultValues" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="258" assertions="1" time="0.459530"/>
-      <testcase name="testPriorityHasToBeAnInteger" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="267" assertions="1" time="0.465585"/>
-      <testcase name="testDoneHasToBeBoolean" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="276" assertions="1" time="0.499300"/>
+      <testcase name="testPagination" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="246" assertions="1" time="0.411212"/>
+      <testcase name="testNameIsRequiredAndDefaultValues" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="258" assertions="1" time="0.441422"/>
+      <testcase name="testPriorityHasToBeAnInteger" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="267" assertions="1" time="0.469133"/>
+      <testcase name="testDoneHasToBeBoolean" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="276" assertions="1" time="0.503912"/>
     </testsuite>
-    <testsuite name="TaskApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TestApiTest.php" tests="2" assertions="0" failures="2" errors="0" time="1.174729">
-      <testcase name="testShowAllTasks" class="TaskApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TestApiTest.php" line="14" assertions="0" time="0.597869">
+    <testsuite name="TaskApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TestApiTest.php" tests="2" assertions="0" failures="2" errors="0" time="1.166371">
+      <testcase name="testShowAllTasks" class="TaskApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TestApiTest.php" line="14" assertions="0" time="0.593379">
         <failure type="PHPUnit_Framework_AssertionFailedError">TaskApiTest::testShowAllTasks
 Invalid JSON was returned from the route. Perhaps an exception was thrown?
 
@@ -104,7 +104,7 @@ Invalid JSON was returned from the route. Perhaps an exception was thrown?
 /home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:115
 </failure>
       </testcase>
-      <testcase name="testShowOneTask" class="TaskApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TestApiTest.php" line="37" assertions="0" time="0.576860">
+      <testcase name="testShowOneTask" class="TaskApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TestApiTest.php" line="37" assertions="0" time="0.572992">
         <failure type="PHPUnit_Framework_AssertionFailedError">TaskApiTest::testShowOneTask
 Invalid JSON was returned from the route. Perhaps an exception was thrown?
 
