@@ -51,6 +51,7 @@
                             </div>
                         </td>
                         <td><span class="badge bg-blue">85%</span></td>
+                        <td><button @click="dropTodo(index)">[]</button></td>
                     </tr>
                     </tbody>
                 </table>
@@ -124,16 +125,9 @@
                 });
                 this.newTodo = '';
             },
-            dropTodo: function() {
-           var value = this.newTodo && this.newTodo.trim();
-           if (!value) {
-               return;
-                }
-                this.todos.delete({
-                    priority: value,
-
-                });
-                this.newTodo = '';
+            dropTodo: function(index) {
+                this.index = index;
+                 this.todos.splice(index, 1);
             },
             setVisibility: function(visibility) {
                 this.visibility = visibility;
