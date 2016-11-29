@@ -1,5 +1,7 @@
 <?php
+
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+
 /**
  * Class TasksApiTest.
  */
@@ -16,20 +18,20 @@ class TasksApiTest extends TestCase
     /**
      * Default number of tasks created in database.
      */
-
     const DEFAULT_NUMBER_OF_TASKS = 5;
 
     /**
      * Seed database with tasks.
      *
      * @param int $numberOfTasks
+     *
      * @internal param int $number Of Tasks to create
      */
-
     protected function seedDatabaseWithTasks($numberOfTasks = self::DEFAULT_NUMBER_OF_TASKS)
     {
         factory(App\Task::class, $numberOfTasks)->create(['user_id' => 1]);
     }
+
     /**
      * Create task.
      *
@@ -39,6 +41,7 @@ class TasksApiTest extends TestCase
     {
         return factory(App\Task::class)->make(['user_id' => 1]);
     }
+
     /**
      * Convert task to array.
      *
@@ -53,7 +56,7 @@ class TasksApiTest extends TestCase
             'name'     => $task['name'],
             'done'     => (bool) $task['done'],
             'priority' => (int) $task['priority'],
-            'user_id'  => (int) $task['user_id']
+            'user_id'  => (int) $task['user_id'],
         ];
     }
 
@@ -62,23 +65,19 @@ class TasksApiTest extends TestCase
      *
      * @return mixed
      */
-
-    protected function login(){
-
+    protected function login()
+    {
         $user = factory(App\User::class)->create();
-        $this->actingAs($user, "api");
+        $this->actingAs($user, 'api');
     }
 
-    /**
-     *
-     */
+
     public function userNotAuthenticated()
     {
         $response = $this->login()->json('GET', $this->uri);
         static::assertEquals(401, $response->status());
         // todo :test message error
     }
-
 
     /**
      * @return mixed
@@ -87,6 +86,7 @@ class TasksApiTest extends TestCase
     {
         return factory(App\Task::class)->create(['user_id' => 1]);
     }
+
     /**
      * Test Retrieve all tasks.
      *
@@ -99,7 +99,7 @@ class TasksApiTest extends TestCase
         //Seed database
         $this->seedDatabaseWithTasks();
 
-        /** @var TYPE_NAME $this */
+        /* @var TYPE_NAME $this */
 
         $this->login()->json('GET', $this->uri)
             ->seeJsonStructure([
@@ -115,6 +115,7 @@ class TasksApiTest extends TestCase
                 count($this->decodeResponseJson()['data'])
             );
     }
+
     /**
      * Test Retrieve one task.
      *
@@ -133,13 +134,14 @@ class TasksApiTest extends TestCase
                 ['name', 'done', 'priority', 'created_at', 'updated_at'])
 //  Needs Transformers to work: convert string to booelan and string to integer
             ->seeJsonContains([
-                'name'     => $task->name,
-                'done'     => $task->done,
-                'priority' => $task->priority,
+                'name'       => $task->name,
+                'done'       => $task->done,
+                'priority'   => $task->priority,
                 'created_at' => $task->created_at,
                 'updated_at' => $task->updated_at,
             ]);
     }
+
     /**
      * Test Create new task.
      *
@@ -156,8 +158,8 @@ class TasksApiTest extends TestCase
                 'created' => true,
             ])
             ->seeInDatabase('tasks', $atask);
-
     }
+
     /**
      * Test update existing task.
      *
@@ -176,6 +178,7 @@ class TasksApiTest extends TestCase
             ])
             ->seeInDatabase('tasks', $atask);
     }
+
     /**
      * Test delete existing task.
      *
@@ -192,6 +195,7 @@ class TasksApiTest extends TestCase
             ])
             ->notSeeInDatabase('tasks', $atask);
     }
+
     /**
      * Test not exists.
      *
@@ -205,6 +209,7 @@ class TasksApiTest extends TestCase
             ])
             ->assertEquals(404, $this->response->status());
     }
+
     /**
      * Test get not existing task.
      *
@@ -216,6 +221,7 @@ class TasksApiTest extends TestCase
     {
         $this->testNotExists('GET');
     }
+
     /**
      * Test delete not existing task.
      *
@@ -227,6 +233,7 @@ class TasksApiTest extends TestCase
     {
         $this->testNotExists('PUT');
     }
+
     /**
      * Test delete not existing task.
      *
@@ -238,6 +245,7 @@ class TasksApiTest extends TestCase
     {
         $this->testNotExists('DELETE');
     }
+
     /**
      * Test pagination.
      *
@@ -259,6 +267,7 @@ class TasksApiTest extends TestCase
     {
         $this->assertTrue(true);
     }
+
     /**
      * Test priority has to be an integer.
      *
@@ -268,6 +277,7 @@ class TasksApiTest extends TestCase
     {
         $this->assertTrue(true);
     }
+
     /**
      * Test done has to be a boolean.
      *

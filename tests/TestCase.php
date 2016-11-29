@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class TestCase
+ * Class TestCase.
  */
 abstract class TestCase extends Illuminate\Foundation\Testing\TestCase
 {

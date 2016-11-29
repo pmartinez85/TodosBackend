@@ -14,8 +14,9 @@ class UsersController extends Controller
 {
     /**
      * TasksController constructor.
+     *
      * @param UserTransformer $transformer
-     * @param UserRepository $repository
+     * @param UserRepository  $repository
      */
     public function __construct(UserTransformer $transformer, UserRepository $repository)
     {
@@ -33,7 +34,7 @@ class UsersController extends Controller
     {
         $users = User::paginate(15);
 
-        /** @noinspection PhpMethodOrClassCallIsNotCaseSensitiveInspection */
+        /* @noinspection PhpMethodOrClassCallIsNotCaseSensitiveInspection */
         return $this->generatepaginatedResponse($users, ['propietari' => 'Pedro Martinez']);
     }
 
@@ -74,8 +75,8 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = $this->repository->find($id);
-        return $this->transform($user);
 
+        return $this->transform($user);
     }
 
     /**
@@ -101,6 +102,7 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         User::findOrFail($id)->update($request->all());
+
         return response([
             'error'   => false,
             'updated' => true,
@@ -118,6 +120,7 @@ class UsersController extends Controller
     public function destroy($id)
     {
         User::findOrFail($id)->delete();
+
         return response([
             'error'   => false,
             'deleted' => true,

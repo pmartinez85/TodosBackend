@@ -1,21 +1,24 @@
 <?php
+
 namespace App\Transformers;
+
 use App\Exceptions\IncorrectModelException;
 
 /**
- * Class UserTransformer
- * @package App\Transformers
+ * Class UserTransformer.
  */
 class UserTransformer extends Transformer
 {
     /**
      * @param $resource
-     * @return array
+     *
      * @throws IncorrectModelException
+     *
+     * @return array
      */
     public function transform($resource)
     {
-        /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+        /* @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
         if (!$resource instanceof \App\User) {
             throw new IncorrectModelException();
         }
