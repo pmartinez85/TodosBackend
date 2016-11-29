@@ -1,35 +1,49 @@
 TAP version 13
-ok 1 - UsersApiTest::testRetrieveAllUsers
-not ok 2 - Failure: UsersApiTest::testRetrieveOneUser
-  ---
-  message: 'Failed asserting that an array has the key ''email''.'
-  severity: fail
-  ...
-not ok 3 - Failure: UsersApiTest::testCreateNewUser
+not ok 1 - Error: TasksApiTest::testRetrieveAllTasks
+not ok 2 - Failure: TasksApiTest::testRetrieveOneTask
   ---
   message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
   severity: fail
   ...
-ok 4 - UsersApiTest::testUpdateExistingUser
-ok 5 - UsersApiTest::testDeleteExistingUser
+ok 3 - TasksApiTest::testCreateNewTask
+not ok 4 - Failure: TasksApiTest::testUpdateExistingTask
+  ---
+  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
+  severity: fail
+  ...
+not ok 5 - Failure: TasksApiTest::testDeleteExistingTask
+  ---
+  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
+  severity: fail
+  ...
 not ok 6 - Warning: Warning
-not ok 7 - Failure: UsersApiTest::testGetNotExistingUser
+not ok 7 - Failure: TasksApiTest::testGetNotExistingTask
   ---
   message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
   severity: fail
   ...
-not ok 8 - Failure: UsersApiTest::testUpdateNotExistingUser
+not ok 8 - Failure: TasksApiTest::testUpdateNotExistingTask
   ---
   message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
   severity: fail
   ...
-not ok 9 - Failure: UsersApiTest::testDeleteNotExistingUser
+not ok 9 - Failure: TasksApiTest::testDeleteNotExistingTask
   ---
   message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
   severity: fail
   ...
-ok 10 - UsersApiTest::testPagination
-ok 11 - UsersApiTest::testNameIsRequiredAndDefaultValues
-ok 12 - UsersApiTest::testPriorityHasToBeAnInteger
-ok 13 - UsersApiTest::testDoneHasToBeBoolean
-1..13
+ok 10 - TasksApiTest::testPagination
+ok 11 - TasksApiTest::testNameIsRequiredAndDefaultValues
+ok 12 - TasksApiTest::testPriorityHasToBeAnInteger
+ok 13 - TasksApiTest::testDoneHasToBeBoolean
+not ok 14 - Failure: TaskApiTest::testShowAllTasks
+  ---
+  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
+  severity: fail
+  ...
+not ok 15 - Failure: TaskApiTest::testShowOneTask
+  ---
+  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
+  severity: fail
+  ...
+1..15
