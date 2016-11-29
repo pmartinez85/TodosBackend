@@ -63,14 +63,30 @@ class TasksApiTest extends TestCase
      * @return mixed
      */
 
+    protected function login(){
+
+        $user = factory(App\User::class)->create();
+        $this->actingAs($user, "api");
+    }
+
+    /**
+     *
+     */
+    public function userNotAuthenticated()
+    {
+        $response = $this->login()->json('GET', $this->uri);
+        static::assertEquals(401, $response->status());
+        // todo :test message error
+    }
+
+
+    /**
+     * @return mixed
+     */
     protected function createAndPersistTask()
     {
         return factory(App\Task::class)->create(['user_id' => 1]);
     }
-
-    //TODO ADD TEST FOR AUTHENTICATION AND REFACTOR EXISTING TESTS
-    //NOT AUTHORIZED: $this->assertEquals(301, $response->status());
-
     /**
      * Test Retrieve all tasks.
      *
@@ -84,7 +100,8 @@ class TasksApiTest extends TestCase
         $this->seedDatabaseWithTasks();
 
         /** @var TYPE_NAME $this */
-        $this->json('GET', $this->uri)
+
+        $this->login()->json('GET', $this->uri)
             ->seeJsonStructure([
                 'propietari', 'total', 'per_page', 'current_page', 'last_page', 'next_page_url', 'prev_page_url',
                 'data' => [
