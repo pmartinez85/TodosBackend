@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use App\Transformers\TaskTransformer;
 use App\User;
 use Illuminate\Http\Request;
-use App\Transformers\TaskTransformer;
 
 /**
- * Class UserTaskController
- * @package App\Http\Controllers
+ * Class UserTaskController.
  */
 class UserTaskController extends Controller
 {
     /**
      * TasksController constructor.
+     *
      * @param TaskTransformer $transformer
      */
     public function __construct(TaskTransformer $transformer)
@@ -26,6 +26,7 @@ class UserTaskController extends Controller
      * Display a listing of the resource.
      *
      * @param $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function index($id)
@@ -34,7 +35,6 @@ class UserTaskController extends Controller
         $tasks = $user->tasks()->paginate(15);
 
         return $this->generatePaginatedResponse($tasks, ['propietari' => 'Pedro Martínez']);
-
     }
 
     /**
@@ -51,8 +51,8 @@ class UserTaskController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     *
      * @param $iduser
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $iduser)
@@ -73,7 +73,9 @@ class UserTaskController extends Controller
      *
      * @param $iduser
      * @param $idtask
+     *
      * @return \Illuminate\Http\Response
+     *
      * @internal param int $id
      */
     public function show($iduser, $idtask)
@@ -90,7 +92,9 @@ class UserTaskController extends Controller
      * @param Request $request
      * @param $iduser
      * @param $idtask
+     *
      * @return \Illuminate\Http\Response
+     *
      * @internal param int $id
      */
     public function edit(Request $request, $iduser, $idtask)

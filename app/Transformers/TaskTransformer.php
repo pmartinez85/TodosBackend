@@ -1,23 +1,25 @@
 <?php
+
 namespace App\Transformers;
 
 use App\Exceptions\IncorrectModelException;
 use App\Task;
 
 /**
- * Class TaskTransformer
- * @package App\Transformers
+ * Class TaskTransformer.
  */
 class TaskTransformer extends Transformer
 {
     /**
      * @param $resource
-     * @return array
+     *
      * @throws IncorrectModelException
+     *
+     * @return array
      */
     public function transform($resource)
     {
-        /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
+        /* @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
         if (!$resource instanceof Task) {
             throw new IncorrectModelException();
         }

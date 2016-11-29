@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 
 /**
- * Class TasksTablesSeeder
+ * Class TasksTablesSeeder.
  */
 class TasksTablesSeeder extends Seeder
 {
@@ -14,15 +14,14 @@ class TasksTablesSeeder extends Seeder
      */
     public function run()
     {
-
         factory(App\User::class, 50)->create()->each(
-        /**
-         * @param $user
-         */
+            /**
+             * @param $user
+             */
             function ($user) {
-            $user->tasks()->saveMany(
+                $user->tasks()->saveMany(
                 factory(App\Task::class, 5)->create(['user_id' => $user->id])
             );
-        });
+            });
     }
 }

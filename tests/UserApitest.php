@@ -1,8 +1,9 @@
 <?php
+
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 /**
- * Class UsersApiTest
+ * Class UsersApiTest.
  */
 class UsersApiTest extends TestCase
 {
@@ -17,6 +18,7 @@ class UsersApiTest extends TestCase
      * Default number of users created in database.
      */
     const DEFAULT_NUMBER_OF_USERS = 5;
+
     /**
      * Seed database with users.
      *
@@ -26,6 +28,7 @@ class UsersApiTest extends TestCase
     {
         factory(App\User::class, $numberOfUsers)->create();
     }
+
     /**
      * Create user.
      *
@@ -35,6 +38,7 @@ class UsersApiTest extends TestCase
     {
         return factory(App\User::class)->make();
     }
+
     /**
      * Convert user to array.
      *
@@ -50,6 +54,7 @@ class UsersApiTest extends TestCase
             'email' => $user['email'],
         ];
     }
+
     /**
      * Create and persist user on database.
      *
@@ -59,8 +64,10 @@ class UsersApiTest extends TestCase
     {
         return factory(App\User::class)->create();
     }
+
     //TODO ADD TEST FOR AUTHENTICATION AND REFACTOR EXISTING TESTS
     //NOT AUTHORIZED: $this->assertEquals(301, $response->status());
+
     /**
      * Test Retrieve all users.
      *
@@ -86,6 +93,7 @@ class UsersApiTest extends TestCase
                 count($this->decodeResponseJson()['data'])
             );
     }
+
     /**
      * Test Retrieve one user.
      *
@@ -105,6 +113,7 @@ class UsersApiTest extends TestCase
                 'email' => $user->email,
             ]);
     }
+
     /**
      * Test Create new user.
      *
@@ -121,6 +130,7 @@ class UsersApiTest extends TestCase
             ])
             ->seeInDatabase('users', $auser);
     }
+
     /**
      * Test update existing user.
      *
@@ -138,6 +148,7 @@ class UsersApiTest extends TestCase
             ])
             ->seeInDatabase('users', $auser);
     }
+
     /**
      * Test delete existing user.
      *
@@ -154,6 +165,7 @@ class UsersApiTest extends TestCase
             ])
             ->notSeeInDatabase('users', $auser);
     }
+
     /**
      * Test not exists.
      *
@@ -167,6 +179,7 @@ class UsersApiTest extends TestCase
             ])
             ->assertEquals(404, $this->response->status());
     }
+
     /**
      * Test get not existing user.
      *
@@ -178,6 +191,7 @@ class UsersApiTest extends TestCase
     {
         $this->testNotExists('GET');
     }
+
     /**
      * Test delete not existing user.
      *
@@ -189,6 +203,7 @@ class UsersApiTest extends TestCase
     {
         $this->testNotExists('PUT');
     }
+
     /**
      * Test delete not existing user.
      *
@@ -200,6 +215,7 @@ class UsersApiTest extends TestCase
     {
         $this->testNotExists('DELETE');
     }
+
     /**
      * Test pagination.
      *
@@ -209,7 +225,9 @@ class UsersApiTest extends TestCase
     {
         //TODO
     }
+
     //TODO: Test validation
+
     /**
      * Test name is required and done is set to false and priority to 1.
      *
@@ -219,6 +237,7 @@ class UsersApiTest extends TestCase
     {
         //TODO
     }
+
     /**
      * Test priority has to be an integer.
      *
@@ -226,8 +245,9 @@ class UsersApiTest extends TestCase
      */
     public function testPriorityHasToBeAnInteger()
     {
-    //todo
+        //todo
     }
+
     /**
      * Test done has to be a boolean.
      *
@@ -235,6 +255,6 @@ class UsersApiTest extends TestCase
      */
     public function testDoneHasToBeBoolean()
     {
-  //TODO
+        //TODO
     }
 }

@@ -13,8 +13,7 @@ use Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 /**
- * Class Handler
- * @package App\Exceptions
+ * Class Handler.
  */
 class Handler extends ExceptionHandler
 {
