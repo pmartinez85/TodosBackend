@@ -41,7 +41,7 @@
                     </thead>
                     <tbody>
                     <tr v-for="(todo, index) in filteredTodos">
-                        <td class="active">{{index + 1}}</td>
+                        <td class="active">{{index + from}}</td>
                         <td class="warning">{{todo.name}}</td>
                         <td class="danger">{{todo.priority}}</td>
                         <td class="success">{{todo.done}}</td>
@@ -57,13 +57,8 @@
                 </table>
             </div>
             <div class="box-footer clearfix">
-                <ul class="pagination pagination-sm no-margin pull-right">
-                    <li><a href="#">&laquo;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">&raquo;</a></li>
-                </ul>
+                <span class="pull-left">Showing {{ from }} to {{ to }} of {{ total }} entries </span>
+                <pagination></pagination>
             </div>
         </div>
     </div>
@@ -74,13 +69,19 @@
 </style>
 
 <script>
+
+import Pagination from './Pagination.vue'
     export default {
+    components : { Pagination },
     data(){
         return {
             todos: [],
             visibility: 'totes',
-            newTodo: ''
-
+            newTodo: '',
+            perPage: 5,
+            from: 0,
+            to: 0,
+            total: 0
         }
     },
     computed: {
@@ -136,10 +137,18 @@
                 this.message = this.message.split('').reverse().join('');
         },
         fetchData:function (){
+            return this.fetchPage(1);
+        },
+        fetchPage:function(page){
         // GET /someUrl
-            this.$http.get('/api/v1/task').then((response) => {
+            this.$http.get('/api/v1/task?page=' + page).then((response) => {
                 console.log(response);
             this.todos = response.data.data;
+            this.perPage = response.data.data.per_page;
+            this.to = response.data.to;
+            this.from = response.data.from;
+            this.total = response.data.data;
+
             }, (response) => {
                 // error callback
                 sweetAlert("Oops...", "Something went wrong!", "error");
