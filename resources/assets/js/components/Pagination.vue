@@ -20,14 +20,21 @@
     export default {
     props:{
         currentPage: {
-        type: Number,
-        required: true
-    },
-        methods: {
-            lowerBound (num, limit) {
-            return num >= limit ? num : limit
-        }
-    },
+            type: Number,
+            required: true
+            },
+         visiblePages: {
+              type: Number,
+              default: 5,
+              coerce: (val) => parseInt(val)
+            },
+        totalItems: Number,
+
+            methods: {
+                lowerBound (num, limit) {
+                return num >= limit ? num : limit
+            }
+        },
     computed: {
             paginationRange () {
               let start = this.currentPage - this.visiblePages / 2 <= 0
@@ -41,6 +48,15 @@
               return range
             }
           },
+          lastPage () {
+      if (this.totalPages) {
+        return this.totalPages
+      } else {
+        return this.totalItems % this.itemsPerPage === 0
+          ? this.totalItems / this.itemsPerPage
+          : Math.floor(this.totalItems / this.itemsPerPage) + 1
+      }
+    },
         }
     }
 </script>

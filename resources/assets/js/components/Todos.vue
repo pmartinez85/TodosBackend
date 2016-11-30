@@ -58,7 +58,7 @@
             </div>
             <div class="box-footer clearfix">
                 <span class="pull-left">Showing {{ from }} to {{ to }} of {{ total }} entries </span>
-                <pagination></pagination>
+                <pagination :current-page="1">@</pagination>
             </div>
         </div>
     </div>
@@ -101,8 +101,7 @@ import Pagination from './Pagination.vue'
             return todos.filter(function(todo){
                 return todo.done;
             });
-
-           }
+           },
         }
 
         return filters[this.visibility](this.todos);
