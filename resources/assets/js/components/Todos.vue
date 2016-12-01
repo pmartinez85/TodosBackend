@@ -1,4 +1,4 @@
-<template xmlns:v-on="http://www.w3.org/1999/xhtml">
+<template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
     <div>
         <div class="box">
             <div class="box-header with-border">
@@ -7,7 +7,7 @@
             <div class="btn-group">
                 <button type="button" class="btn btn-default">{{visibility}}</button>
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                   <span class="caret"> </span>
+                    <span class="caret"> </span>
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
@@ -21,16 +21,17 @@
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" placeholder="Escriu la tasca a crear"
-                        v-model="newTodo"
-                        @keyup.enter="addTodo">
+                               v-model="newTodo"
+                               @keyup.enter="addTodo">
+
                     </div>
                 </div>
             </form>
             <!-- /.box-header -->
-            <div class="box-body">
+            <div  class="box-body">
                 <table class="table table-bordered">
                     <thead>
-                    <tr class="info">
+                    <tr class="info" >
                         <th style="width: 20px">ID</th>
                         <th>Tasca</th>
                         <th>Edit_TODO</th>
@@ -41,10 +42,25 @@
                         <th>Drop</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody v-bind:class="{'is-collapsed' : collapsed }">
                     <tr v-for="(todo, index) in filteredTodos">
+
                         <td class="active">{{index + from}}</td>
-                        <td class="warning">{{todo.name}}</td>
+                        <td>
+
+
+
+                            <div v-cloak v-on:click="hideTooltip">
+                                <div class="tooltip" v-on:click.stop v-if="show_tooltip">
+                                    <input type="text" v-model="newTodo" />
+                                </div>
+                                <p v-on:click.stop="toggleTooltip">{{todo.name}}</p>
+                            </div>
+
+
+
+
+                        </td>
                         <td><button @click="editTodo(index)">^_^</button></td>
                         <td class="danger">{{todo.priority}}</td>
                         <td class="success">{{todo.done}}</td>
@@ -55,10 +71,12 @@
                         </td>
                         <td><span class="badge bg-blue">85%</span></td>
                         <td><button @click="dropTodo(index)">}:)</button></td>
+
                     </tr>
                     </tbody>
+
                 </table>
-            </div>
+                    <button v-on:click=" collapsed = !collapsed">Show more</button>
             <div class="box-footer clearfix">
                 <!--<span class="pull-left">Showing {{ from }} to {{ to }} of {{ total }} entries </span>-->
                 <div class="container">
@@ -71,41 +89,159 @@
                     </pagination>
                 </div>
             </div>
+            </div>
         </div>
     </div>
 </template>
 
 <style>
-    body {
-    font-family: Helvetica, sans-serif;
-    padding-top: 80px;
+
+.is-collapsed {
+
+	tr:nth-child(n+5) {
+		display: none;
+	}
 }
 
-</style>
+    /* Hide un-compiled mustache bindings
+    until the Vue instance is ready */
+
+    [v-cloak] {
+      display: none;
+    }
+
+    *{
+        margin:0;
+        padding:0;
+    }
+
+    body{
+        font:12px/1.3 'Open Sans', sans-serif;
+        color: #5e5b64;
+        text-align:center;
+    }
+
+    a, a:visited {
+        outline:none;
+        color:#389dc1;
+    }
+
+    a:hover{
+        text-decoration:none;
+    }
+
+    section, footer, header, aside, nav{
+        display: block;
+    }
+
+
+    /*-------------------------
+        The edit tooltip
+    --------------------------*/
+
+    .tooltip{
+        background-color:#5c9bb7;
+
+        background-image:-webkit-linear-gradient(top, #5c9bb7, #5392ad);
+        background-image:-moz-linear-gradient(top, #5c9bb7, #5392ad);
+        background-image:linear-gradient(top, #5c9bb7, #5392ad);
+
+        box-shadow: 0 1px 1px #ccc;
+        border-radius:3px;
+        width: 290px;
+        padding: 10px;
+
+        position: absolute;
+        left:50%;
+        margin-left:-150px;
+        top: 80px;
+    }
+
+    .tooltip:after{
+        /* The tip of the tooltip */
+        content:'';
+        position:absolute;
+        border:6px solid #5190ac;
+        border-color:#5190ac transparent transparent;
+        width:0;
+        height:0;
+        bottom:-12px;
+        left:50%;
+        margin-left:-6px;
+    }
+
+    .tooltip input{
+        border: none;
+        width: 100%;
+        line-height: 34px;
+        border-radius: 3px;
+        box-shadow: 0 2px 6px #bbb inset;
+        text-align: center;
+        font-size: 16px;
+        font-family: inherit;
+        color: #8d9395;
+        font-weight: bold;
+        outline: none;
+    }
+
+    p{
+        font-size:12px;
+        font-weight:bold;
+        color:#6d8088;
+        height: 30px;
+        cursor:default;
+    }
+
+    p b{
+        color:#ffffff;
+        display:inline-block;
+        padding:5px 10px;
+        background-color:#c4d7e0;
+        border-radius:2px;
+        text-transform:uppercase;
+        font-size:18px;
+    }
+
+    p:before{
+        content:'✎';
+        display:inline-block;
+        margin-right:5px;
+        font-weight:normal;
+        vertical-align: text-bottom;
+    }
+
+    #main{
+        height:300px;
+        position:relative;
+        padding-top: 150px;
+    }
+    </style>
 
 <script>
-
 import Pagination from './Pagination.vue'
     export default {
     components : { Pagination },
+    el: "#app",
     data(){
         return {
             pageOne: {
                 currentPage: 1,
                 totalPages: 10
             },
+            collapsed: true,
             todos: [],
             visibility: 'totes',
             newTodo: '',
             perPage: 5,
             from: 0,
             to: 0,
-            total: 0
+            total: 0,
+            show_tooltip: false,
+            text_content: 'Edit me.'
         }
     },
     computed: {
         filteredTodos: function() {
-
         var filters = {
             totes: function(todos){
                 return todos;
@@ -114,7 +250,6 @@ import Pagination from './Pagination.vue'
             return todos.filter(function(todo){
                 return !todo.done;
             });
-
             },
             completades: function(todos){
             return todos.filter(function(todo){
@@ -122,9 +257,7 @@ import Pagination from './Pagination.vue'
             });
            },
         }
-
         return filters[this.visibility](this.todos);
-
         }
     },
     created() {
@@ -132,6 +265,13 @@ import Pagination from './Pagination.vue'
         this.fetchData();
     },
     methods: {
+    hideTooltip: function(){
+            // When a model is changed, the view will be automatically updated.
+            this.show_tooltip = false;
+        },
+        toggleTooltip: function(){
+            this.show_tooltip = !this.show_tooltip;
+        },
         pageOneChanged (pageNum) {
             this.pageOne.currentPage = pageNum
             },
@@ -169,14 +309,13 @@ import Pagination from './Pagination.vue'
             this.to = response.data.to;
             this.from = response.data.from;
             this.total = response.data.data;
-
             }, (response) => {
                 // error callback
                 sweetAlert("Oops...", "Something went wrong!", "error");
                // console.log(response);
              });
-
         }
-    }
+    },
+
 }
 </script>
