@@ -1,14 +1,19 @@
 <template>
-        <ul class="pagination pagination-sm no-margin pull-right">
-            <li v-for="n in paginationRange">
-                <a href="#">&laquo;</a></li>
-
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-
-            <li><a href="#">&raquo;</a></li>
-        </ul>
+    <ul class="pagination">
+        <li>
+            <a href="#" @click.prevent="pageChanged(1)" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li v-for="n in paginationRange" :class="activePage(n)">
+            <a href="#" @click.prevent="pageChanged(n)">{{ n }}</a>
+        </li>
+        <li>
+            <a href="#" @click.prevent="pageChanged(lastPage)" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
 </template>
 <style>
 
@@ -16,6 +21,7 @@
 
 </style>
 <script>
+import Util from './Util'
 
     export default {
     props:{
@@ -28,14 +34,37 @@
               default: 5,
               coerce: (val) => parseInt(val)
             },
-        totalItems: Number,
-
-            methods: {
-                lowerBound (num, limit) {
-                return num >= limit ? num : limit
-            }
+                // Total page
+                totalPages: Number,
+                // Items per page
+                itemsPerPage: Number,
+                // Total items
+                totalItems: Number,
+                // Visible Pages
+            },
+    methods: {
+            activePage (pageNum) {
+                return this.currentPage === pageNum ? 'active' : ''
+            },
+            pageChanged (pageNum) {
+                this.$emit('page-changed', pageNum)
+                //this.$dispatch('page-changed', pageNum) //Vue 1.0
+            },
+     },
+     data () {
+        return {}
         },
     computed: {
+            lastPage () {
+                if (this.totalPages) {
+                    return this.totalPages
+                } else {
+                    return this.totalItems % this.itemsPerPage === 0
+                        ? this.totalItems / this.itemsPerPage
+                        : Math.floor(this.totalItems / this.itemsPerPage) + 1
+                }
+            },
+
             paginationRange () {
               let start = this.currentPage - this.visiblePages / 2 <= 0
                             ? 1 : this.currentPage + this.visiblePages / 2 > this.lastPage
@@ -47,16 +76,6 @@
               }
               return range
             }
-          },
-          lastPage () {
-      if (this.totalPages) {
-        return this.totalPages
-      } else {
-        return this.totalItems % this.itemsPerPage === 0
-          ? this.totalItems / this.itemsPerPage
-          : Math.floor(this.totalItems / this.itemsPerPage) + 1
-      }
-    },
-        }
-    }
+     }
+}
 </script>

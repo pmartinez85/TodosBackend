@@ -37,6 +37,7 @@
                         <th>Estat</th>
                         <th>Progres</th>
                         <th style="width: 40px">Label_Into</th>
+                        <th>Drop</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -51,20 +52,32 @@
                             </div>
                         </td>
                         <td><span class="badge bg-blue">85%</span></td>
-                        <td><button @click="dropTodo(index)">[]</button></td>
+                        <td><button @click="dropTodo(index)">}:)</button></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <div class="box-footer clearfix">
-                <span class="pull-left">Showing {{ from }} to {{ to }} of {{ total }} entries </span>
-                <pagination :current-page="1">@</pagination>
+                <!--<span class="pull-left">Showing {{ from }} to {{ to }} of {{ total }} entries </span>-->
+                <div class="container">
+                    <div id="app" class="well">
+                        <h1>This is page {{pageOne.currentPage}}</h1>
+                    </div>
+                    <pagination :current-page="pageOne.currentPage"
+                                :total-pages="pageOne.totalPages"
+                                @page-changed="pageOneChanged">
+                    </pagination>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <style>
+    body {
+    font-family: Helvetica, sans-serif;
+    padding-top: 80px;
+}
 
 </style>
 
@@ -75,6 +88,10 @@ import Pagination from './Pagination.vue'
     components : { Pagination },
     data(){
         return {
+            pageOne: {
+                currentPage: 1,
+                totalPages: 10
+            },
             todos: [],
             visibility: 'totes',
             newTodo: '',
@@ -109,10 +126,13 @@ import Pagination from './Pagination.vue'
         }
     },
     created() {
-        console.log('Component Todolist creat');
+        //console.log('Component Todolist creat');
         this.fetchData();
     },
     methods: {
+        pageOneChanged (pageNum) {
+            this.pageOne.currentPage = pageNum
+            },
         addTodo: function() {
            var value = this.newTodo && this.newTodo.trim();
            if (!value) {
@@ -125,23 +145,23 @@ import Pagination from './Pagination.vue'
                 });
                 this.newTodo = '';
             },
-            dropTodo: function(index) {
+        dropTodo: function(index) {
                 this.index = index;
                  this.todos.splice(index, 1);
             },
-            setVisibility: function(visibility) {
+        setVisibility: function(visibility) {
                 this.visibility = visibility;
             },
-            reverseMessage:function () {
+        reverseMessage:function () {
                 this.message = this.message.split('').reverse().join('');
-        },
+            },
         fetchData:function (){
             return this.fetchPage(1);
-        },
+            },
         fetchPage:function(page){
         // GET /someUrl
             this.$http.get('/api/v1/task?page=' + page).then((response) => {
-                console.log(response);
+                //console.log(response);
             this.todos = response.data.data;
             this.perPage = response.data.data.per_page;
             this.to = response.data.to;
@@ -151,7 +171,7 @@ import Pagination from './Pagination.vue'
             }, (response) => {
                 // error callback
                 sweetAlert("Oops...", "Something went wrong!", "error");
-                console.log(response);
+               // console.log(response);
              });
 
         }
