@@ -33,6 +33,7 @@
                     <tr class="info">
                         <th style="width: 20px">ID</th>
                         <th>Tasca</th>
+                        <th>Edit_TODO</th>
                         <th>Prioritat</th>
                         <th>Estat</th>
                         <th>Progres</th>
@@ -44,6 +45,7 @@
                     <tr v-for="(todo, index) in filteredTodos">
                         <td class="active">{{index + from}}</td>
                         <td class="warning">{{todo.name}}</td>
+                        <td><button @click="editTodo(index)">^_^</button></td>
                         <td class="danger">{{todo.priority}}</td>
                         <td class="success">{{todo.done}}</td>
                         <td>
@@ -147,7 +149,7 @@ import Pagination from './Pagination.vue'
             },
         dropTodo: function(index) {
                 this.index = index;
-                 this.todos.splice(index, 1);
+                this.todos.splice(index, 1);
             },
         setVisibility: function(visibility) {
                 this.visibility = visibility;
