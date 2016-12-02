@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Task;
+use Auth;
 use Illuminate\Http\Request;
 use Response;
 use App\Transformers\TaskTransformer;

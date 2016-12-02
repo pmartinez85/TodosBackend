@@ -1,18 +1,11 @@
 <template>
-    <ul class="pagination">
-        <li>
-            <a href="#" @click.prevent="pageChanged(1)" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        <li v-for="n in paginationRange" :class="activePage(n)">
-            <a href="#" @click.prevent="pageChanged(n)">{{ n }}</a>
-        </li>
-        <li>
-            <a href="#" @click.prevent="pageChanged(lastPage)" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
+    <ul class="pagination pagination-sm">
+        <li><a href="#" @click.prevent="pageChanged(1)" aria-label="First"><span aria-hidden="true">&laquo;</span></a></li>
+        <li><a href="#" @click.prevent="pageChanged(page-1)" aria-label="Previous"><span aria-hidden="true">&lt;</span>></a></li>
+        <li v-for="n in paginationRange" :class="activePage(n)"><a href="#" @click.prevent="pageChanged(n)">{{ n }}</a></li>
+        <li><a href="#" @click.prevent="pageChanged(page-1)" aria-label="Next"><span aria-hidden="true"></span>>&gt;</a></li>
+        <li><a href="#" @click.prevent="pageChanged(lastPage)" aria-label="Last"><span aria-hidden="true">&raquo;</span></a></li>
+
     </ul>
 </template>
 <style>
@@ -24,6 +17,9 @@
 import Util from './Util'
 
     export default {
+    data () {
+        return {page: 1}
+        },
     props:{
         currentPage: {
             type: Number,
@@ -47,13 +43,13 @@ import Util from './Util'
                 return this.currentPage === pageNum ? 'active' : ''
             },
             pageChanged (pageNum) {
-                this.$emit('page-changed', pageNum)
+                if (pageNum<=1) pageNum=1
+                if (pageNum>=this.lastPage) pageNum=this.lastPage
+                    this.page = pageNum;
+                    this.$emit('page-changed', pageNum)
                 //this.$dispatch('page-changed', pageNum) //Vue 1.0
             },
      },
-     data () {
-        return {}
-        },
     computed: {
             lastPage () {
                 if (this.totalPages) {
@@ -75,7 +71,10 @@ import Util from './Util'
                 range.push(start + i)
               }
               return range
-            }
+            },
+            created () {
+                this.page = currentPage;
+            },
      }
 }
 </script>

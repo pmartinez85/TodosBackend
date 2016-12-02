@@ -46,21 +46,7 @@
                     <tr v-for="(todo, index) in filteredTodos">
 
                         <td class="active">{{index + from}}</td>
-                        <td>
-
-
-
-                            <div v-cloak v-on:click="hideTooltip">
-                                <div class="tooltip" v-on:click.stop v-if="show_tooltip">
-                                    <input type="text" v-model="newTodo" />
-                                </div>
-                                <p v-on:click.stop="toggleTooltip">{{todo.name}}</p>
-                            </div>
-
-
-
-
-                        </td>
+                        <td class="active">{{todo.name}}</td>
                         <td><button @click="editTodo(index)">^_^</button></td>
                         <td class="danger">{{todo.priority}}</td>
                         <td class="success">{{todo.done}}</td>
@@ -78,14 +64,15 @@
                 </table>
                     <button v-on:click=" collapsed = !collapsed">Show more</button>
             <div class="box-footer clearfix">
-                <!--<span class="pull-left">Showing {{ from }} to {{ to }} of {{ total }} entries </span>-->
+                <span class="pull-left">Showing {{ from }} to {{ to }} of {{ total }}</span>
                 <div class="container">
                     <div id="app" class="well">
                         <h1>This is page {{pageOne.currentPage}}</h1>
                     </div>
-                    <pagination :current-page="pageOne.currentPage"
-                                :total-pages="pageOne.totalPages"
-                                @page-changed="pageOneChanged">
+                    <pagination :current-page="page"
+                                :items-per-page="perPage"
+                                :total-pages="total"
+                                @page-changed="pageChanged">
                     </pagination>
                 </div>
             </div>
@@ -221,7 +208,7 @@
 import Pagination from './Pagination.vue'
     export default {
     components : { Pagination },
-    el: "#app",
+    //el: "#app",
     data(){
         return {
             pageOne: {
@@ -236,8 +223,9 @@ import Pagination from './Pagination.vue'
             from: 0,
             to: 0,
             total: 0,
-            show_tooltip: false,
-            text_content: 'Edit me.'
+            page: 1,
+            //show_tooltip: false,
+            //text_content: 'Edit me.'
         }
     },
     computed: {
@@ -265,27 +253,54 @@ import Pagination from './Pagination.vue'
         this.fetchData();
     },
     methods: {
-    hideTooltip: function(){
-            // When a model is changed, the view will be automatically updated.
-            this.show_tooltip = false;
-        },
-        toggleTooltip: function(){
-            this.show_tooltip = !this.show_tooltip;
-        },
-        pageOneChanged (pageNum) {
-            this.pageOne.currentPage = pageNum
+//    hideTooltip: function(){
+//           // When a model is changed, the view will be automatically updated.
+//            this.show_tooltip = false;
+//        },
+//        toggleTooltip: function(){
+//            this.show_tooltip = !this.show_tooltip;
+//        },
+        pageChanged: function (pageNum) {
+            this.page = pageNum;
+            this.fetchPage(pageNum);
             },
         addTodo: function() {
            var value = this.newTodo && this.newTodo.trim();
            if (!value) {
                return;
                 }
-                this.todos.push({
+               var todo = {
                     name: value,
                     priority: 1,
                     done: false
-                });
+                };
+                this.todo.push(todo);
                 this.newTodo = '';
+                this.addTodoToApi(todo);
+            },
+
+            addTodoToApi: function(todo){
+
+             this.$http.post('/api/v1/task'), {
+
+
+
+
+             }
+             .then((response) => {
+             },
+                //console.log(response);
+            this.todos = response.data.data;
+            this.to = response.data.to;
+            this.from = response.data.from;
+            this.total = response.data.total;
+            }, (response) => {
+                // error callback
+                sweetAlert("Oops...", "Something went wrong!", "error");
+               // console.log(response);
+             });
+
+
             },
         dropTodo: function(index) {
                 this.index = index;
@@ -308,7 +323,7 @@ import Pagination from './Pagination.vue'
             this.perPage = response.data.data.per_page;
             this.to = response.data.to;
             this.from = response.data.from;
-            this.total = response.data.data;
+            this.total = response.data.total;
             }, (response) => {
                 // error callback
                 sweetAlert("Oops...", "Something went wrong!", "error");
