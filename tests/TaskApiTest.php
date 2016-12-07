@@ -101,7 +101,8 @@ class TasksApiTest extends TestCase
 
         /** @var TYPE_NAME $this */
 
-        $this->login()->json('GET', $this->uri)
+        $this->login();
+        $this->json('GET', $this->uri)
             ->seeJsonStructure([
                 'propietari',
                 'total',
