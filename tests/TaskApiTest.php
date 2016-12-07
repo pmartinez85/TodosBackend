@@ -99,8 +99,6 @@ class TasksApiTest extends TestCase
         //Seed database
         $this->seedDatabaseWithTasks();
 
-        /** @var TYPE_NAME $this */
-
         $this->login();
         $this->json('GET', $this->uri)
             ->seeJsonStructure([
@@ -182,6 +180,7 @@ class TasksApiTest extends TestCase
     public function testUpdateExistingTask()
     {
         $task = $this->createAndPersistTask();
+        $this->login();
         $task->done = !$task->done;
         $task->name = 'Nom de la nova tasca';
 
@@ -215,6 +214,7 @@ class TasksApiTest extends TestCase
      */
     protected function testNotExists($http_method)
     {
+        $this->login();
         $this->json($http_method, $this->uri.'/99999999')
             ->seeJson([
                 'status' => 404,
@@ -261,10 +261,10 @@ class TasksApiTest extends TestCase
      */
     public function testPagination()
     {
+        //todo test
         $this->assertTrue(true);
     }
 
-    //TODO: Test validation
 
     /**
      * Test name is required and done is set to false and priority to 1.
@@ -273,6 +273,7 @@ class TasksApiTest extends TestCase
      */
     public function testNameIsRequiredAndDefaultValues()
     {
+        //todo test
         $this->assertTrue(true);
     }
     /**
@@ -282,6 +283,7 @@ class TasksApiTest extends TestCase
      */
     public function testPriorityHasToBeAnInteger()
     {
+        //todo test
         $this->assertTrue(true);
     }
     /**
@@ -291,6 +293,7 @@ class TasksApiTest extends TestCase
      */
     public function testDoneHasToBeBoolean()
     {
+        //todo test
         $this->assertTrue(true);
     }
 }

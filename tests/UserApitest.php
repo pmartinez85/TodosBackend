@@ -107,8 +107,8 @@ class UsersApiTest extends TestCase
                     ],
                 ],
             ])
-            ::assertEquals(
-                self::DEFAULT_NUMBER_OF_USERS,
+            ->assertEquals(
+                self::DEFAULT_NUMBER_OF_USERS + 1,
                 count($this->decodeResponseJson()['data'])
             );
     }
@@ -122,6 +122,7 @@ class UsersApiTest extends TestCase
     public function testRetrieveOneUser()
     {
         //Create user in database
+        $this->login();
         $user = $this->createAndPersistUser();
         $this->json('GET', $this->uri.'/'.$user->id)
              ->seeJsonStructure(
@@ -140,6 +141,7 @@ class UsersApiTest extends TestCase
      */
     public function testCreateNewUser()
     {
+        $this->login();
         $user = $this->createUser();
         $this->json('POST', $this->uri, $auser = $this->convertUserToArray($user))
             ->seeJson([
@@ -156,6 +158,7 @@ class UsersApiTest extends TestCase
      */
     public function testUpdateExistingUser()
     {
+        $this->login();
         $user = $this->createAndPersistUser();
         $user->name = 'Nou nom dusuari';
         $this->json('PUT', $this->uri.'/'.$user->id, $auser = $this->convertUserToArray($user))
@@ -173,10 +176,8 @@ class UsersApiTest extends TestCase
      */
     public function testDeleteExistingUser()
     {
-        $user = $this->createAndPersistUser();
-
         $this->login();
-
+        $user = $this->createAndPersistUser();
         $this->json('DELETE', $this->uri.'/'.$user->id, $auser = $this->convertUserToArray($user))
             ->seeJson([
                 'deleted' => true,
@@ -191,12 +192,11 @@ class UsersApiTest extends TestCase
     protected function testNotExists($http_method)
     {
         $this->login();
-        //make call static
         $this->json($http_method, $this->uri.'/99999999')
             ->seeJson([
                 'status' => 404,
             ])
-            ::assertEquals(404, $this->response->status());
+            ->assertEquals(404, $this->response->status());
     }
     /**
      * Test get not existing user.
