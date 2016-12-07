@@ -1,7 +1,5 @@
 filter:
     paths: ["app/*"]
-    excluded_paths: [tests/*]
-
 checks:
     php:
         remove_extra_empty_lines: true
