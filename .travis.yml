@@ -7,7 +7,7 @@ php:
 
 before_script:
   - composer install --prefer-source --no-interaction --dev
-  - cp .env.example .env
+  - cp .env.test .env
   - touch database/database.sqlite
   - php artisan migrate && php artisan passport:install
 
