@@ -3,7 +3,7 @@
         <li><a href="#" @click.prevent="pageChanged(1)" aria-label="First"><span aria-hidden="true">&laquo;</span></a></li>
         <li><a href="#" @click.prevent="pageChanged(page-1)" aria-label="Previous"><span aria-hidden="true">&lt;</span>></a></li>
         <li v-for="n in paginationRange" :class="activePage(n)"><a href="#" @click.prevent="pageChanged(n)">{{ n }}</a></li>
-        <li><a href="#" @click.prevent="pageChanged(page-1)" aria-label="Next"><span aria-hidden="true"></span>>&gt;</a></li>
+        <li><a href="#" @click.prevent="pageChanged(page+1)" aria-label="Next"><span aria-hidden="true"></span>>&gt;</a></li>
         <li><a href="#" @click.prevent="pageChanged(lastPage)" aria-label="Last"><span aria-hidden="true">&raquo;</span></a></li>
 
     </ul>

@@ -208,7 +208,6 @@
 import Pagination from './Pagination.vue'
     export default {
     components : { Pagination },
-    //el: "#app",
     data(){
         return {
             pageOne: {
@@ -224,8 +223,6 @@ import Pagination from './Pagination.vue'
             to: 0,
             total: 0,
             page: 1,
-            //show_tooltip: false,
-            //text_content: 'Edit me.'
         }
     },
     computed: {
@@ -249,17 +246,10 @@ import Pagination from './Pagination.vue'
         }
     },
     created() {
-        //console.log('Component Todolist creat');
+        console.log('Component Todolist creat');
         this.fetchData();
     },
     methods: {
-//    hideTooltip: function(){
-//           // When a model is changed, the view will be automatically updated.
-//            this.show_tooltip = false;
-//        },
-//        toggleTooltip: function(){
-//            this.show_tooltip = !this.show_tooltip;
-//        },
         pageChanged: function (pageNum) {
             this.page = pageNum;
             this.fetchPage(pageNum);
@@ -281,26 +271,20 @@ import Pagination from './Pagination.vue'
 
             addTodoToApi: function(todo){
 
-             this.$http.post('/api/v1/task'), {
-
-
-
-
-             }
-             .then((response) => {
+             this.$http.post('/api/v1/task', {
+                name: todo.name,
+                priority: todo.priority,
+                done: todo.done,
+                user_id: todo.user_id,
+             }).then((response) => {
+                console.log(response);
              },
-                //console.log(response);
-            this.todos = response.data.data;
-            this.to = response.data.to;
-            this.from = response.data.from;
-            this.total = response.data.total;
-            }, (response) => {
+                (response) => {
                 // error callback
                 sweetAlert("Oops...", "Something went wrong!", "error");
-               // console.log(response);
+                console.log(response);
              });
-
-
+             this.fetchPage(this.page);
             },
         dropTodo: function(index) {
                 this.index = index;
@@ -316,9 +300,9 @@ import Pagination from './Pagination.vue'
             return this.fetchPage(1);
             },
         fetchPage:function(page){
-        // GET /someUrl
+        // GET someUrl
             this.$http.get('/api/v1/task?page=' + page).then((response) => {
-                //console.log(response);
+                console.log(response);
             this.todos = response.data.data;
             this.perPage = response.data.data.per_page;
             this.to = response.data.to;
@@ -327,7 +311,7 @@ import Pagination from './Pagination.vue'
             }, (response) => {
                 // error callback
                 sweetAlert("Oops...", "Something went wrong!", "error");
-               // console.log(response);
+               console.log(response);
              });
         }
     },
