@@ -66,7 +66,7 @@ class TasksApiTest extends TestCase
     protected function login(){
 
         $user = factory(App\User::class)->create();
-        $this->actingAs($user, "api");
+        $this->actingAs($user, 'api');
     }
 
     /**
@@ -103,10 +103,19 @@ class TasksApiTest extends TestCase
 
         $this->login()->json('GET', $this->uri)
             ->seeJsonStructure([
-                'propietari', 'total', 'per_page', 'current_page', 'last_page', 'next_page_url', 'prev_page_url',
+                'propietari',
+                'total',
+                'per_page',
+                'current_page',
+                'last_page',
+                'next_page_url',
+                'prev_page_url',
                 'data' => [
                     '*' => [
-                        'name', 'done', 'priority',
+                        'name',
+                        'done',
+                        'priority',
+                        'user_id'
                     ],
                 ],
             ])
@@ -126,11 +135,12 @@ class TasksApiTest extends TestCase
     {
         //Create task in database
         $task = $this->createAndPersistTask();
+        $this->login();
 
 
         $this->json('GET', $this->uri.'/'.$task->id)
             ->seeJsonStructure(
-                ['name', 'done', 'priority', 'created_at', 'updated_at'])
+                ['name', 'done', 'priority', 'created_at', 'updated_at', 'user_id'])
 //  Needs Transformers to work: convert string to booelan and string to integer
             ->seeJsonContains([
                 'name'     => $task->name,
@@ -138,6 +148,7 @@ class TasksApiTest extends TestCase
                 'priority' => $task->priority,
                 'created_at' => $task->created_at,
                 'updated_at' => $task->updated_at,
+                'user_id' => $task->user_id
             ]);
     }
     /**
@@ -150,6 +161,8 @@ class TasksApiTest extends TestCase
     public function testCreateNewTask()
     {
         $task = $this->createTask();
+
+        $this->login();
 
         $this->json('POST', $this->uri, $atask = $this->convertTaskToArray($task))
             ->seeJson([
@@ -170,6 +183,8 @@ class TasksApiTest extends TestCase
         $task = $this->createAndPersistTask();
         $task->done = !$task->done;
         $task->name = 'Nom de la nova tasca';
+
+
         $this->json('PUT', $this->uri.'/'.$task->id, $atask = $this->convertTaskToArray($task))
             ->seeJson([
                 'updated' => true,

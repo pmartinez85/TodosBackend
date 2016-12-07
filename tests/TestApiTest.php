@@ -11,6 +11,10 @@ class TaskApiTest extends TestCase
 
     use DatabaseMigrations;
 
+    const DEFAULT_NUMBER_OF_TASKS = 5;
+
+    const DEFAULT_USER_ID = 1;
+
     public function testShowAllTasks()
     {
         //        $this->json('GET', $this->uri)   // Mètode + URL
