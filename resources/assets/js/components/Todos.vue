@@ -34,7 +34,6 @@
                     <tr class="info" >
                         <th style="width: 20px">ID</th>
                         <th>Tasca</th>
-                        <th>Edit_TODO</th>
                         <th>Prioritat</th>
                         <th>Estat</th>
                         <th>Progres</th>
@@ -45,11 +44,11 @@
                     <tbody v-bind:class="{'is-collapsed' : collapsed }">
                     <tr v-for="(todo, index) in filteredTodos">
 
-                        <td class="active">{{index + from}}</td>
-                        <td class="active">{{todo.name}}</td>
-                        <td><button @click="editTodo(index)">^_^</button></td>
-                        <td class="danger">{{todo.priority}}</td>
-                        <td class="success">{{todo.done}}</td>
+                        <td>{{index + from}}</td>
+                        <td><div v-show="!nom[index]" @dblclick="semaforNom(index,todo)">{{todo.name}}</div>
+                        <input type="text" v-model="todo.name" v-show="nom[index]" @keyup.enter="semaforNom(index,todo)"></td>
+                        <td>{{todo.priority}}</td>
+                        <td>{{todo.done}}</td>
                         <td>
                             <div class="progress progress-xs">
                                 <div class="progress-bar progress-bar-danger" style="width: 85%"></div>
@@ -62,12 +61,10 @@
                     </tbody>
 
                 </table>
-                    <button v-on:click=" collapsed = !collapsed">Show more</button>
             <div class="box-footer clearfix">
                 <span class="pull-left">Showing {{ from }} to {{ to }} of {{ total }}</span>
                 <div class="container">
                     <div id="app" class="well">
-                        <h1>This is page {{pageOne.currentPage}}</h1>
                     </div>
                     <pagination :current-page="page"
                                 :items-per-page="perPage"
@@ -210,14 +207,11 @@ import Pagination from './Pagination.vue'
     components : { Pagination },
     data(){
         return {
-            pageOne: {
-                currentPage: 1,
-                totalPages: 10
-            },
             collapsed: true,
             todos: [],
             visibility: 'totes',
             newTodo: '',
+            nom: [],
             perPage: 5,
             from: 0,
             to: 0,
@@ -254,6 +248,30 @@ import Pagination from './Pagination.vue'
             this.page = pageNum;
             this.fetchPage(pageNum);
             },
+        semaforNom: function(index, todo) {
+                this.nom[index] = !this.nom[index];
+                if (!this.nom[index]) this.editaNom(index,todo);
+                this.fetchPage(this.page);
+            },
+        editaNom: function(index,todo){
+            this.filteredTodos[index].name = todo.name;
+            this.actuApi(todo);
+            console.log(todo);
+            console.log(this.filteredTodos[index].name);
+            },
+         actuApi: function (todo){
+            this.$http.put('/api/v1/task/' + todo.id,{
+                name : todo.name,
+                priority : this.todo.priority,
+                done : this.todo.done,
+             }).then((response) => {
+                console.log(response);
+            }, (response) => {
+                // error callback
+                sweetAlert("Oops...", "Something went wrong!", "error");
+                console.log(response);
+            });
+            },
         addTodo: function() {
            var value = this.newTodo && this.newTodo.trim();
            if (!value) {
@@ -267,6 +285,8 @@ import Pagination from './Pagination.vue'
                 this.todo.push(todo);
                 this.newTodo = '';
                 this.addTodoToApi(todo);
+                this.fetchPage(this.page);
+
             },
 
             addTodoToApi: function(todo){
@@ -284,7 +304,16 @@ import Pagination from './Pagination.vue'
                 sweetAlert("Oops...", "Something went wrong!", "error");
                 console.log(response);
              });
-             this.fetchPage(this.page);
+            // this.fetchPage(this.page);
+            },
+         deleteFromApi: function(id) {
+            this.$http.delete('/api/v1/task/' + id).then((response) => {
+                console.log(response);
+            }, (response) => {
+                // error callback
+                sweetAlert("Oops...", "Something went wrong!", "error");
+                console.log(response);
+            });
             },
         dropTodo: function(index) {
                 this.index = index;
