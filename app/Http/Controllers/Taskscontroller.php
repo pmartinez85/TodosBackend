@@ -2,40 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\TaskRepository;
 use App\Task;
-use Auth;
+use App\Transformers\TaskTransformer;
 use Illuminate\Http\Request;
 use Response;
-use App\Transformers\TaskTransformer;
-use App\Repositories\TaskRepository;
 
 /**
  * Exemple de documentació:
- * Class TasksController  ->> titol
+ * Class TasksController  ->> titol.
  *
  * Descripció de la classe!!  ->> descripció
- *
- * @package App\Http\Controllers ->> Etiquetes!!
  */
-
-class TasksController extends Controller
+class Taskscontroller extends Controller
 {
     /**
-     * La documentacio ens diu que aquesta variable es de tipus objecte taskrepository
-     *
-     * @var TaskRepository
-     */
-
+    * La documentacio ens diu que aquesta variable es de tipus objecte taskrepository.
+    *
+    * @var TaskRepository
+    */
    protected $repository;
-
 
     /**
      * TasksController constructor.
+     *
      * @param TaskTransformer $transformer
-     * @param TaskRepository $repository
+     * @param TaskRepository  $repository
      */
     public function __construct(TaskTransformer $transformer, TaskRepository $repository)
-
     {
         parent::__construct($transformer);
 
@@ -50,7 +44,6 @@ class TasksController extends Controller
         $tasks = Task::paginate(15);
 
         return $this->generatePaginatedResponse($tasks, ['propietari' => 'Pedro Martinez']);
-
     }
 
     /**

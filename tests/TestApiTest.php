@@ -3,7 +3,7 @@
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 /**
- * Class TaskApiTest
+ * Class TaskApiTest.
  */
 class TaskApiTest extends TestCase
 {

@@ -195,7 +195,7 @@ return [
          * See: https://github.com/acacha/llum
          */
         Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
-       #llum_providers
+       //llum_providers
 
     ],
 
@@ -252,7 +252,7 @@ return [
          */
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
-        #llum_aliases
+        //llum_aliases
     ],
 
 ];

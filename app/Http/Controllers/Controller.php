@@ -10,13 +10,11 @@ use Illuminate\Routing\Controller as BaseController;
 use Response;
 
 /**
- * Class Controller
- * @package App\Http\Controllers
+ * Class Controller.
  */
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
 
     protected $transformer;
 
@@ -33,7 +31,9 @@ class Controller extends BaseController
     /**
      * @param $resources
      * @param array $metadata
+     *
      * @return \Illuminate\Http\JsonResponse
+     *
      * @internal param $resource
      */
     protected function generatePaginatedResponse($resources, array $metadata = [])
@@ -50,9 +50,10 @@ class Controller extends BaseController
 
     /**
      * @param $resources
-     * @return array
-     * @internal param $resource
      *
+     * @return array
+     *
+     * @internal param $resource
      */
     protected function generatePaginationData($resources)
     {
@@ -74,15 +75,16 @@ class Controller extends BaseController
     protected function transform($resources)
     {
         return [
-            'name' => $resources['name'],
-            'done' => (boolean)$resources['done'],
-            'priority' => (integer)$resources['priority'],
+            'name'     => $resources['name'],
+            'done'     => (bool) $resources['done'],
+            'priority' => (int) $resources['priority'],
 
         ];
     }
 
     /**
      * @param $resources
+     *
      * @return array
      */
     protected function transformCollection($resources)

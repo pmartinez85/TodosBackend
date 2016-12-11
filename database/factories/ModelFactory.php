@@ -24,9 +24,6 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-
-
-
 $factory->define(App\Task::class, function (Faker\Generator $faker) {
     static $password;
 
@@ -34,7 +31,6 @@ $factory->define(App\Task::class, function (Faker\Generator $faker) {
     'name'     => $faker->sentence,
     'done'     => $faker->boolean(),
     'priority' => $faker->randomDigit,
-
 
 ];
 });

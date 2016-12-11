@@ -1,10 +1,12 @@
 <?php
+
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Hash;
+
 /**
  * Class AcachaAdminLTELaravelTest.
  */
-class AcachaAdminLTELaravelTest extends TestCase
+class AcachaAdminLTELaraveltest extends TestCase
 {
     use DatabaseMigrations;
     /*
@@ -12,6 +14,7 @@ class AcachaAdminLTELaravelTest extends TestCase
      * see: https://github.com/laravel/laravel/pull/3943
      *      https://github.com/laravel/framework/issues/15426
      */
+
     /**
      * @return mixed
      */
@@ -20,8 +23,10 @@ class AcachaAdminLTELaravelTest extends TestCase
         $app = require __DIR__.'/../bootstrap/app.php';
         $app->make(Illuminate\Contracts\Http\Kernel::class);
         $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+
         return $app;
     }
+
     /**
      * Set up tests.
      */
@@ -30,6 +35,7 @@ class AcachaAdminLTELaravelTest extends TestCase
         parent::setUp();
         App::setLocale('en');
     }
+
     /**
      * Test Landing Page.
      *
@@ -42,6 +48,7 @@ class AcachaAdminLTELaravelTest extends TestCase
             ->see('adminlte-laravel')
             ->see('Pratt');
     }
+
     /**
      * Test Landing Page.
      *
@@ -57,6 +64,7 @@ class AcachaAdminLTELaravelTest extends TestCase
             ->see('Pratt')
             ->see($user->name);
     }
+
     /**
      * Test Login Page.
      *
@@ -67,6 +75,7 @@ class AcachaAdminLTELaravelTest extends TestCase
         $this->visit('/login')
             ->see('Sign in to start your session');
     }
+
     /**
      * Test Login.
      *
@@ -82,6 +91,7 @@ class AcachaAdminLTELaravelTest extends TestCase
             ->seePageIs('/home')
             ->see($user->name);
     }
+
     /**
      * Test Login.
      *
@@ -96,6 +106,7 @@ class AcachaAdminLTELaravelTest extends TestCase
             ->see('The email field is required')
             ->see('The password field is required');
     }
+
     /**
      * Test Register Page.
      *
@@ -106,6 +117,7 @@ class AcachaAdminLTELaravelTest extends TestCase
         $this->visit('/register')
             ->see('Register a new membership');
     }
+
     /**
      * Test Password reset Page.
      *
@@ -116,6 +128,7 @@ class AcachaAdminLTELaravelTest extends TestCase
         $this->visit('/password/reset')
             ->see('Reset Password');
     }
+
     /**
      * Test home page is only for authorized Users.
      *
@@ -126,6 +139,7 @@ class AcachaAdminLTELaravelTest extends TestCase
         $this->visit('/home')
             ->seePageIs('/login');
     }
+
     /**
      * Test home page works with Authenticated Users.
      *
@@ -138,6 +152,7 @@ class AcachaAdminLTELaravelTest extends TestCase
             ->visit('/home')
             ->see($user->name);
     }
+
     /**
      * Test log out.
      *
@@ -152,6 +167,7 @@ class AcachaAdminLTELaravelTest extends TestCase
             ->makeRequestUsingForm($form)
             ->seePageIs('/');
     }
+
     /**
      * Test 404 Error page.
      *
@@ -163,6 +179,7 @@ class AcachaAdminLTELaravelTest extends TestCase
             ->seeStatusCode(404)
             ->see('404');
     }
+
     /**
      * Test user registration.
      *
@@ -179,8 +196,9 @@ class AcachaAdminLTELaravelTest extends TestCase
             ->press('Register')
             ->seePageIs('/home')
             ->seeInDatabase('users', ['email' => 'sergiturbadenas@gmail.com',
-                'name'  => 'Sergi Tur Badenas', ]);
+                'name'                        => 'Sergi Tur Badenas', ]);
     }
+
     /**
      * Test required fields on registration page.
      *
@@ -194,6 +212,7 @@ class AcachaAdminLTELaravelTest extends TestCase
             ->see('The email field is required')
             ->see('The password field is required');
     }
+
     /**
      * Test send password reset.
      *
@@ -207,6 +226,7 @@ class AcachaAdminLTELaravelTest extends TestCase
             ->press('Send Password Reset Link')
             ->see('We have e-mailed your password reset link!');
     }
+
     /**
      * Test send password reset user not exists.
      *
