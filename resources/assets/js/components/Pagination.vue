@@ -37,7 +37,7 @@ import Util from './Util'
                 // Total items
                 totalItems: Number,
                 // Visible Pages
-            },
+    },
     methods: {
             activePage (pageNum) {
                 return this.currentPage === pageNum ? 'active' : ''
@@ -49,6 +49,9 @@ import Util from './Util'
                     this.$emit('page-changed', pageNum)
                 //this.$dispatch('page-changed', pageNum) //Vue 1.0
             },
+            lowerBound (num, limit) {
+            return num >= limit ? num : limit
+        },
      },
     computed: {
             lastPage () {
