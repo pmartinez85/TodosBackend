@@ -50,10 +50,11 @@ class TasksApiTest extends TestCase
     {
         //        return $task->toArray();
         return [
+            'id'       => (int) $task['id'],
             'name'     => $task['name'],
             'done'     => (bool) $task['done'],
             'priority' => (int) $task['priority'],
-            'user_id'  => (int) $task['user_id']
+            'user_id'  => (int) $task['user_id'],
         ];
     }
 
@@ -74,9 +75,11 @@ class TasksApiTest extends TestCase
      */
     public function userNotAuthenticated()
     {
-        $response = $this->login()->json('GET', $this->uri);
-        static::assertEquals(401, $response->status());
-        // todo :test message error
+//        $response = $this->login()->json('GET', $this->uri);
+//        static::assertEquals(401, $response->status());
+//         todo :test message error
+        $this->json('GET', $this->uri)
+            ->assertResponseStatus(401);
     }
 
 
@@ -139,15 +142,13 @@ class TasksApiTest extends TestCase
 
         $this->json('GET', $this->uri.'/'.$task->id)
             ->seeJsonStructure(
-                ['name', 'done', 'priority', 'created_at', 'updated_at', 'user_id'])
+                ['id','name', 'done', 'priority'])
 //  Needs Transformers to work: convert string to booelan and string to integer
             ->seeJsonContains([
+                'id'        => $task->id,
                 'name'     => $task->name,
                 'done'     => $task->done,
                 'priority' => $task->priority,
-                'created_at' => $task->created_at,
-                'updated_at' => $task->updated_at,
-                'user_id' => $task->user_id
             ]);
     }
     /**
@@ -201,6 +202,7 @@ class TasksApiTest extends TestCase
     public function testDeleteExistingTask()
     {
         $task = $this->createAndPersistTask();
+        $this->login();
         $this->json('DELETE', $this->uri.'/'.$task->id, $atask = $this->convertTaskToArray($task))
             ->seeJson([
                 'deleted' => true,
@@ -283,8 +285,11 @@ class TasksApiTest extends TestCase
      */
     public function testPriorityHasToBeAnInteger()
     {
-        //todo test
-        $this->assertTrue(true);
+        $task = $this->createAndPersistTask();
+        $this->login();
+        $this->json('GET', $this->uri.'/'.$task->id);
+        $priority = $this->decodeResponseJson()['priority'];
+        $this->assertInternalType('int', $priority);
     }
     /**
      * Test done has to be a boolean.
@@ -293,7 +298,10 @@ class TasksApiTest extends TestCase
      */
     public function testDoneHasToBeBoolean()
     {
-        //todo test
-        $this->assertTrue(true);
+        $task = $this->createAndPersistTask();
+        $this->login();
+        $this->json('GET', $this->uri.'/'.$task->id);
+        $done = $this->decodeResponseJson()['done'];
+        $this->assertInternalType('boolean', $done);
     }
 }

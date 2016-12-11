@@ -1,11 +1,15 @@
 TAP version 13
-not ok 1 - Error: TasksApiTest::testRetrieveAllTasks
+ok 1 - TasksApiTest::testRetrieveAllTasks
 not ok 2 - Failure: TasksApiTest::testRetrieveOneTask
   ---
   message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
   severity: fail
   ...
-ok 3 - TasksApiTest::testCreateNewTask
+not ok 3 - Failure: TasksApiTest::testCreateNewTask
+  ---
+  message: 'Unable to find row in database table [tasks] that matched attributes [{"id":0,"name":"Maxime sed possimus non perspiciatis.","done":true,"priority":5,"user_id":1}].'
+  severity: fail
+  ...
 not ok 4 - Failure: TasksApiTest::testUpdateExistingTask
   ---
   message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
@@ -34,8 +38,16 @@ not ok 9 - Failure: TasksApiTest::testDeleteNotExistingTask
   ...
 ok 10 - TasksApiTest::testPagination
 ok 11 - TasksApiTest::testNameIsRequiredAndDefaultValues
-ok 12 - TasksApiTest::testPriorityHasToBeAnInteger
-ok 13 - TasksApiTest::testDoneHasToBeBoolean
+not ok 12 - Failure: TasksApiTest::testPriorityHasToBeAnInteger
+  ---
+  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
+  severity: fail
+  ...
+not ok 13 - Failure: TasksApiTest::testDoneHasToBeBoolean
+  ---
+  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
+  severity: fail
+  ...
 not ok 14 - Failure: TaskApiTest::testShowAllTasks
   ---
   message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'

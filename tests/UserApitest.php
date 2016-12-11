@@ -48,8 +48,8 @@ class UsersApiTest extends TestCase
         return [
             'name'  => $user['name'],
             'email' => $user['email'],
-            'password' => $user->password,
-            'api_token' => $user->api_token
+            'password' => $user['password'],
+            'api_token' => $user['api_token'],
         ];
     }
     /**
@@ -66,6 +66,9 @@ class UsersApiTest extends TestCase
         $response = $this->json('GET', $this->uri)->getResult();
         //refactor to static call...it is running?
         static::assertEquals(401, $response->status());
+        //En cas que la crida estàtica no funcione usem la següent funció
+//        $this->json('GET', $this->uri)
+//            ->assertResponseStatus(401);
 
     }
 
@@ -230,42 +233,5 @@ class UsersApiTest extends TestCase
     public function testDeleteNotExistingUser()
     {
         $this->testNotExists('DELETE');
-    }
-    /**
-     * Test pagination.
-     *
-     * @return void
-     */
-    public function testPagination()
-    {
-        //TODO
-    }
-    //TODO: Test validation
-    /**
-     * Test name is required and done is set to false and priority to 1.
-     *
-     * @return void
-     */
-    public function testNameIsRequiredAndDefaultValues()
-    {
-        //TODO
-    }
-    /**
-     * Test priority has to be an integer.
-     *
-     * @return void
-     */
-    public function testPriorityHasToBeAnInteger()
-    {
-    //todo
-    }
-    /**
-     * Test done has to be a boolean.
-     *
-     * @return void
-     */
-    public function testDoneHasToBeBoolean()
-    {
-  //TODO
     }
 }
