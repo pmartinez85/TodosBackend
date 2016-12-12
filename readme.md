@@ -2,8 +2,9 @@
 
 # TodosBackend
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pmartinez85/TodosBackend/badges/quality-score.png?b=tests)](https://scrutinizer-ci.com/g/pmartinez85/TodosBackend/?branch=tests)
+[![Build Status](https://scrutinizer-ci.com/g/pmartinez85/TodosBackend/badges/build.png?b=tests)](https://scrutinizer-ci.com/g/pmartinez85/TodosBackend/build-status/tests)
 [![Build Status](https://travis-ci.org/pmartinez85/TodosBackend.svg?branch=tests)](https://travis-ci.org/pmartinez85/TodosBackend)
-[![Coverage Status](https://coveralls.io/repos/github/pmartinez85/TodosBackend/badge.svg?branch=tests)](https://coveralls.io/github/pmartinez85/TodosBackend?branch=tests)
+[![Code Coverage](https://scrutinizer-ci.com/g/pmartinez85/TodosBackend/badges/coverage.png?b=tests)](https://scrutinizer-ci.com/g/pmartinez85/TodosBackend/?branch=tests)
 
 Repositori d'una API que implementa les operacions CRUD de tasques i usuaris.
 
