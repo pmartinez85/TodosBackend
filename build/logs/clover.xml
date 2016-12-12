@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1481559626">
-  <project timestamp="1481559626">
+<coverage generated="1481559811">
+  <project timestamp="1481559811">
     <package name="App\Console">
       <file name="/home/pedro/Code/Todos/TodosBackend/app/Console/Kernel.php">
         <class name="Kernel" namespace="App\Console" fullPackage="App" package="App">
