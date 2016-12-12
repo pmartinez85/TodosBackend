@@ -226,7 +226,7 @@ class TasksApiTest extends TestCase
             ->seeJson([
                 'status' => 404,
             ])
-            ::assertEquals(404, $this->response->status());
+            ->assertEquals(404, $this->response->status());
     }
     /**
      * Test get not existing task.
