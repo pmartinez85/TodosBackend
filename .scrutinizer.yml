@@ -2,9 +2,6 @@ filter:
     paths: ["app/*"]
     excluded_paths: [tests/*,public/plugins/*]
 
-before_commands:
-    - 'composer install --dev --prefer-source'
-
 checks:
     php:
         remove_extra_empty_lines: true
@@ -20,3 +17,8 @@ checks:
         fix_line_ending: true
         fix_identation_4spaces: true
         fix_doc_comments: true
+
+tools:
+    external_code_coverage:
+        timeout: 600
+        runs: 3
