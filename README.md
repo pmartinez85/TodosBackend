@@ -6,7 +6,6 @@
 [![Build Status](https://travis-ci.org/pmartinez85/TodosBackend.svg?branch=tests)](https://travis-ci.org/pmartinez85/TodosBackend)
 [![Code Coverage](https://scrutinizer-ci.com/g/pmartinez85/TodosBackend/badges/coverage.png?b=tests)](https://scrutinizer-ci.com/g/pmartinez85/TodosBackend/?branch=tests)
 
-
 **Note:** Replace ```Pedro Martinez``` ```pmartinez85``` ```https://github.com/pmartinez85``` ```pmartinez1085@gmail.com``` ```pmartinez85``` ```TodosBackend``` ```API for TodosBackend from DAM 16/17``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line. You can run `$ php prefill.php` in the command line to make all replacements at once. Delete the file prefill.php as well.
 
 This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
