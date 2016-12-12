@@ -51,7 +51,7 @@ class UsersApiTest extends TestCase
             'name'  => $user['name'],
             'email' => $user['email'],
             'password' => $user['password'],
-            'api_token' => $user['api_token'],
+//            'api_token' => $user['api_token'],
         ];
     }
     /**
@@ -194,7 +194,7 @@ class UsersApiTest extends TestCase
      *
      * @param $http_method
      */
-    protected function testNotExists($http_method)
+    protected function datestNotExists($http_method)
     {
         $this->login();
         $this->json($http_method, $this->uri.'/99999999')
@@ -212,7 +212,7 @@ class UsersApiTest extends TestCase
      */
     public function testGetNotExistingUser()
     {
-        $this->testNotExists('GET');
+        $this->datestNotExists('GET');
     }
     /**
      * Test delete not existing user.
@@ -223,7 +223,7 @@ class UsersApiTest extends TestCase
      */
     public function testUpdateNotExistingUser()
     {
-        $this->testNotExists('PUT');
+        $this->datestNotExists('PUT');
     }
     /**
      * Test delete not existing user.
@@ -234,6 +234,6 @@ class UsersApiTest extends TestCase
      */
     public function testDeleteNotExistingUser()
     {
-        $this->testNotExists('DELETE');
+        $this->datestNotExists('DELETE');
     }
 }

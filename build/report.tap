@@ -4,33 +4,11 @@ ok 2 - TasksApiTest::testRetrieveOneTask
 ok 3 - TasksApiTest::testCreateNewTask
 ok 4 - TasksApiTest::testUpdateExistingTask
 ok 5 - TasksApiTest::testDeleteExistingTask
-not ok 6 - Failure: TasksApiTest::testGetNotExistingTask
-  ---
-  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
-  severity: fail
-  ...
-not ok 7 - Failure: TasksApiTest::testUpdateNotExistingTask
-  ---
-  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
-  severity: fail
-  ...
-not ok 8 - Failure: TasksApiTest::testDeleteNotExistingTask
-  ---
-  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
-  severity: fail
-  ...
+ok 6 - TasksApiTest::testGetNotExistingTask
+ok 7 - TasksApiTest::testUpdateNotExistingTask
+ok 8 - TasksApiTest::testDeleteNotExistingTask
 ok 9 - TasksApiTest::testPagination
 ok 10 - TasksApiTest::testNameIsRequiredAndDefaultValues
 ok 11 - TasksApiTest::testPriorityHasToBeAnInteger
 ok 12 - TasksApiTest::testDoneHasToBeBoolean
-not ok 13 - Failure: TaskApiTest::testShowAllTasks
-  ---
-  message: 'JSON was not returned from [http://localhost/api/task].'
-  severity: fail
-  ...
-not ok 14 - Failure: TaskApiTest::testShowOneTask
-  ---
-  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
-  severity: fail
-  ...
-1..14
+1..12

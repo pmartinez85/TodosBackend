@@ -55,19 +55,29 @@ class Handler extends ExceptionHandler
      * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
-    {
-        if ($exception instanceof ModelNotFoundException) {
-            return Response::json(404, [
-                'error' => 'Hi ha hagut una excepció '.$exception->getMessage(),
-                'code'  => 10,
-            ]);
+        {
+            if ($exception instanceof ModelNotFoundException) {
+                return Response::json([
+                    'error' => 'Hi ha hagut una excepció: ' . $exception->getMessage(),
+                    'code' => 10,
+                    'status' => 404,
+                ], 404);
+            }
+            if ($exception instanceof IncorrectModelException) {
+                return Response::json([
+                    'error' => 'Hi ha hagut una excepció, model incorrecte: ' . $exception->getMessage(),
+                    'code' => 10,
+                    'status' => 404,
+                ], 404);
+            }
+            if ($exception instanceof \ErrorException) {
+                return Response::json([
+                    'error' => 'Hi ha hagut una excepció, error: ' . $exception->getMessage(),
+                    'code' => 10,
+                ], 404);
+            }
+            return parent::render($request, $exception);
         }
-        if ($exception instanceof IncorrectModelException) {
-            //            return Response::json([
-        }
-
-        return parent::render($request, $exception);
-    }
 
     /**
      * Convert an authentication exception into an unauthenticated response.
