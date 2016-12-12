@@ -10,18 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Task extends Model
 {
-    protected $fillable = ['name', 'done', 'priority', 'user_id'];
-
-    /**
-     * @param $id
-     */
-    public static function findOrFail($id)
-    {
-    }
-
-    /**
-     * @param $int
-     */
+    protected $fillable = ['id', 'name', 'done', 'priority', 'user_id'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

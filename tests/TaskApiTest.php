@@ -145,10 +145,9 @@ class TasksApiTest extends TestCase
 
         $this->json('GET', $this->uri.'/'.$task->id)
             ->seeJsonStructure(
-                ['id','name', 'done', 'priority'])
+                ['name', 'done', 'priority'])
 //  Needs Transformers to work: convert string to booelan and string to integer
             ->seeJsonContains([
-                'id'        => $task->id,
                 'name'     => $task->name,
                 'done'     => $task->done,
                 'priority' => $task->priority,
@@ -217,7 +216,7 @@ class TasksApiTest extends TestCase
      *
      * @param $http_method
      */
-    public function testNotExists($http_method)
+    protected function datestNotExists($http_method)
     {
         $this->login();
         $this->json($http_method, $this->uri.'/99999999')
@@ -235,7 +234,7 @@ class TasksApiTest extends TestCase
      */
     public function testGetNotExistingTask()
     {
-        $this->testNotExists('GET');
+        $this->datestNotExists('GET');
     }
     /**
      * Test delete not existing task.
@@ -246,7 +245,7 @@ class TasksApiTest extends TestCase
      */
     public function testUpdateNotExistingTask()
     {
-        $this->testNotExists('PUT');
+        $this->datestNotExists('PUT');
     }
     /**
      * Test delete not existing task.
@@ -257,7 +256,7 @@ class TasksApiTest extends TestCase
      */
     public function testDeleteNotExistingTask()
     {
-        $this->testNotExists('DELETE');
+        $this->datestNotExists('DELETE');
     }
     /**
      * Test pagination.

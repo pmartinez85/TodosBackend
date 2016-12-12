@@ -1,61 +1,36 @@
 TAP version 13
 ok 1 - TasksApiTest::testRetrieveAllTasks
-not ok 2 - Failure: TasksApiTest::testRetrieveOneTask
+ok 2 - TasksApiTest::testRetrieveOneTask
+ok 3 - TasksApiTest::testCreateNewTask
+ok 4 - TasksApiTest::testUpdateExistingTask
+ok 5 - TasksApiTest::testDeleteExistingTask
+not ok 6 - Failure: TasksApiTest::testGetNotExistingTask
   ---
   message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
   severity: fail
   ...
-not ok 3 - Failure: TasksApiTest::testCreateNewTask
-  ---
-  message: 'Unable to find row in database table [tasks] that matched attributes [{"id":0,"name":"Maxime sed possimus non perspiciatis.","done":true,"priority":5,"user_id":1}].'
-  severity: fail
-  ...
-not ok 4 - Failure: TasksApiTest::testUpdateExistingTask
+not ok 7 - Failure: TasksApiTest::testUpdateNotExistingTask
   ---
   message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
   severity: fail
   ...
-not ok 5 - Failure: TasksApiTest::testDeleteExistingTask
+not ok 8 - Failure: TasksApiTest::testDeleteNotExistingTask
   ---
   message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
   severity: fail
   ...
-not ok 6 - Warning: Warning
-not ok 7 - Failure: TasksApiTest::testGetNotExistingTask
+ok 9 - TasksApiTest::testPagination
+ok 10 - TasksApiTest::testNameIsRequiredAndDefaultValues
+ok 11 - TasksApiTest::testPriorityHasToBeAnInteger
+ok 12 - TasksApiTest::testDoneHasToBeBoolean
+not ok 13 - Failure: TaskApiTest::testShowAllTasks
+  ---
+  message: 'JSON was not returned from [http://localhost/api/task].'
+  severity: fail
+  ...
+not ok 14 - Failure: TaskApiTest::testShowOneTask
   ---
   message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
   severity: fail
   ...
-not ok 8 - Failure: TasksApiTest::testUpdateNotExistingTask
-  ---
-  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
-  severity: fail
-  ...
-not ok 9 - Failure: TasksApiTest::testDeleteNotExistingTask
-  ---
-  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
-  severity: fail
-  ...
-ok 10 - TasksApiTest::testPagination
-ok 11 - TasksApiTest::testNameIsRequiredAndDefaultValues
-not ok 12 - Failure: TasksApiTest::testPriorityHasToBeAnInteger
-  ---
-  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
-  severity: fail
-  ...
-not ok 13 - Failure: TasksApiTest::testDoneHasToBeBoolean
-  ---
-  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
-  severity: fail
-  ...
-not ok 14 - Failure: TaskApiTest::testShowAllTasks
-  ---
-  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
-  severity: fail
-  ...
-not ok 15 - Failure: TaskApiTest::testShowOneTask
-  ---
-  message: 'Invalid JSON was returned from the route. Perhaps an exception was thrown?'
-  severity: fail
-  ...
-1..15
+1..14

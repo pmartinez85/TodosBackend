@@ -72,6 +72,9 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
+        if (!$request->has('user_id')) {
+            $request->merge(['user_id' => Auth::id()]);
+        }
         Task::create($request->all());
 
         return response([
