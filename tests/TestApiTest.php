@@ -1,12 +1,14 @@
 <?php
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 /**
  * Class TaskApiTest
  */
 class TaskApiTest extends TestCase
 {
+    use WithoutMiddleware;
     protected $uri = '/api/task';
 
     use DatabaseMigrations;

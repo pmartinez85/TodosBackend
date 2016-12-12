@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 /**
  * Class UsersApiTest
@@ -7,6 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 class UsersApiTest extends TestCase
 {
     use DatabaseMigrations;
+    use WithoutMiddleware;
     /**
      * RESOURCE URL ON API.
      *

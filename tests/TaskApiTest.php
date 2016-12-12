@@ -1,11 +1,14 @@
 <?php
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+
 /**
  * Class TasksApiTest.
  */
 class TasksApiTest extends TestCase
 {
     use DatabaseMigrations;
+    use WithoutMiddleware;
     /**
      * RESOURCE URL ON API.
      *
@@ -214,7 +217,7 @@ class TasksApiTest extends TestCase
      *
      * @param $http_method
      */
-    protected function testNotExists($http_method)
+    public function testNotExists($http_method)
     {
         $this->login();
         $this->json($http_method, $this->uri.'/99999999')
