@@ -14,6 +14,15 @@ class TaskPolicy
 {
     use HandlesAuthorization;
 
+
+    /**
+     * @param User $user
+     */
+    public function show(User $user)
+    {
+        return true;
+    }
+
     /**
      * Determine whether the user can view the task.
      *
@@ -46,7 +55,7 @@ class TaskPolicy
      */
     public function update(User $user, Task $task)
     {
-        //
+        return $user->id == $task->user_id;
     }
 
     /**

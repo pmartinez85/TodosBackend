@@ -18,7 +18,9 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'App\Model' => 'App\Policies\ModelPolicy',
+        'App\Task' => 'App\Policies\TaskPolicy',
+        //'App\User' => 'App\Policies\UserPolicy',  //TODO USER POLICY
+
     ];
 
     /**
@@ -30,13 +32,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         Passport::routes();
-
         $this->defineGates();
 
-
-
-
-        //
     }
 
     private function defineGates()
@@ -54,19 +51,12 @@ class AuthServiceProvider extends ServiceProvider
 
         });
 
-// Usuari propietari
-
-        Gate::define('update-task', function($user, $task) {
-
-            return $user->id == $task->user_id;
-        });
-
 
 //usuari admin
 
         Gate::define('update-task1', function($user) {
 
-            return $user->isAdmin(); //no tenim aquest mètode encara
+            return $user->isSuperAdmin(); //no tenim aquest mètode encara
         });
 
 //Usuari admin i usuari propietari
