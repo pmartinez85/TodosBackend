@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Repositories\UserRepository;
 use App\Transformers\UserTransformer;
 use App\User;
-use Auth;
 use Illuminate\Http\Request;
 
 /**
@@ -30,14 +29,12 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Request $request)
+    public function index()
     {
-        $user = Auth::user();
-        if ($user->can('show', \App\User::class )){
-
-        }
         $users = User::paginate(15);
-        return $this->generatePaginatedResponse($users, ['propietari' => 'Pedro Martinez']);
+
+        /** @noinspection PhpMethodOrClassCallIsNotCaseSensitiveInspection */
+        return $this->generatepaginatedResponse($users, ['propietari' => 'Pedro Martinez']);
     }
 
     /**
