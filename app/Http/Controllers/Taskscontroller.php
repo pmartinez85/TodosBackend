@@ -47,14 +47,9 @@ class TasksController extends Controller
      */
     public function index(Request $request)
     {
-        if (IsUserAuthorized()) {
             $tasks = Task::paginate(15);
 
             return $this->generatePaginatedResponse($tasks, ['propietari' => 'Pedro Martinez']);
-        }
-
-        return "Forbidden, 403";
-
 }
 
     /**
