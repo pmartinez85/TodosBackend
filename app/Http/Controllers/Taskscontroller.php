@@ -48,14 +48,8 @@ class TasksController extends Controller
      */
     public function index(Request $request)
     {
-        if (Gate::denies('show-task')) {
-            abort(403);
-        }
-        $tasks = Task::paginate(15);
-
-        return $this->generatePaginatedResponse($tasks, ['propietari' => 'Pedro Martinez']);
-
-
+            $tasks = Task::paginate(15);
+            return $this->generatePaginatedResponse($tasks, ['propietari' => 'Pedro Martinez']);
 }
 
     /**
