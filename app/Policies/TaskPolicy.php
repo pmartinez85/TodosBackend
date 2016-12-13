@@ -12,7 +12,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
  */
 class TaskPolicy
 {
-    use HandlesAuthorization;
+    use HandlesAuthorization, HasAdmin;
 
 
     /**

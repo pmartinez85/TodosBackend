@@ -1,14 +1,15 @@
 TAP version 13
-ok 1 - TasksApiTest::testRetrieveAllTasks
-ok 2 - TasksApiTest::testRetrieveOneTask
-ok 3 - TasksApiTest::testCreateNewTask
-ok 4 - TasksApiTest::testUpdateExistingTask
-ok 5 - TasksApiTest::testDeleteExistingTask
-ok 6 - TasksApiTest::testGetNotExistingTask
-ok 7 - TasksApiTest::testUpdateNotExistingTask
-ok 8 - TasksApiTest::testDeleteNotExistingTask
-ok 9 - TasksApiTest::testPagination
-ok 10 - TasksApiTest::testNameIsRequiredAndDefaultValues
-ok 11 - TasksApiTest::testPriorityHasToBeAnInteger
-ok 12 - TasksApiTest::testDoneHasToBeBoolean
-1..12
+not ok 1 - Failure: TaskControllerTest::testAuthorizedIndex
+  ---
+  message: 'Expected status code 200, got 404.'
+  severity: fail
+  ...
+not ok 2 - Failure: TaskControllerTest::testNotAuthorizedIndex
+  ---
+  message: 'Expected status code 403, got 404.'
+  severity: fail
+  data:
+      got: 404
+      expected: 403
+  ...
+1..2
