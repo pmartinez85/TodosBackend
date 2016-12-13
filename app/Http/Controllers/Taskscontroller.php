@@ -48,6 +48,11 @@ class TasksController extends Controller
      */
     public function index(Request $request)
     {
+        $user = Auth::user();
+        if ($user->can('show', \App\Task::class )){
+
+            //
+        }
             $tasks = Task::paginate(15);
             return $this->generatePaginatedResponse($tasks, ['propietari' => 'Pedro Martinez']);
 }
@@ -122,7 +127,10 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         Task::findOrFail($id)->update($request->all());
+
+        //$this->authorize('update', $task); //abans de continuar li preguntem si estem autoritzats
 
         return response([
             'error'   => false,

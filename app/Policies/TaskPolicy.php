@@ -20,7 +20,7 @@ class TaskPolicy
      */
     public function show(User $user)
     {
-        return true;
+        return false;
     }
 
     /**
