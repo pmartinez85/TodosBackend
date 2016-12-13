@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Auth;
+use Gate;
 use Illuminate\Http\Request;
 use Response;
 use App\Transformers\TaskTransformer;
@@ -47,9 +48,13 @@ class TasksController extends Controller
      */
     public function index(Request $request)
     {
+        if (Gate::allows('show-task')) {
             $tasks = Task::paginate(15);
 
             return $this->generatePaginatedResponse($tasks, ['propietari' => 'Pedro Martinez']);
+        }
+        abort(403);
+
 }
 
     /**
