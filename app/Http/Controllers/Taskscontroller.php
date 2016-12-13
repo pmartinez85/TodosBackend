@@ -26,7 +26,7 @@ class TasksController extends Controller
      * @var TaskRepository
      */
 
-   protected $repository;
+    protected $repository;
 
 
     /**
@@ -45,13 +45,17 @@ class TasksController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::paginate(15);
+        if (IsUserAuthorized()) {
+            $tasks = Task::paginate(15);
 
-        return $this->generatePaginatedResponse($tasks, ['propietari' => 'Pedro Martinez']);
+            return $this->generatePaginatedResponse($tasks, ['propietari' => 'Pedro Martinez']);
+        }
 
-    }
+        return "Forbidden, 403";
+
+}
 
     /**
      * Show the form for creating a new resource.
