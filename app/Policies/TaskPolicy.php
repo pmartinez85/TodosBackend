@@ -18,7 +18,7 @@ class TaskPolicy extends BasePolicy
      */
     protected function model()
     {
-        return 'user';
+        return 'task';
 
     }
 
