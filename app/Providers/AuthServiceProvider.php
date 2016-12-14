@@ -36,6 +36,9 @@ class AuthServiceProvider extends ServiceProvider
 
     }
 
+    /**
+     *
+     */
     private function defineGates()
     {
         Gate::define('easy-gate', function(){

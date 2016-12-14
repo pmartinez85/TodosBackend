@@ -6,10 +6,10 @@ namespace App\Policies;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 /**
- * Class UserPolicy
+ * Class TaskPolicy
  * @package App\Policies
  */
-class UserPolicy extends BasePolicy
+class TaskPolicy extends BasePolicy
 {
     use HandlesAuthorization, HasAdmin;
 

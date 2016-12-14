@@ -9,7 +9,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
  * Class TaskPolicy
  * @package App\Policies
  */
-class TaskPolicy extends BasePolicy
+class UserPolicy extends BasePolicy
 {
     use HandlesAuthorization, HasAdmin;
 
