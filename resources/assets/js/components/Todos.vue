@@ -43,6 +43,7 @@
                     </thead>
                     <tbody v-bind:class="{'is-collapsed' : collapsed }">
                     <tr v-for="(todo, index) in filteredTodos">
+                        <!--<todo></todo>-->
 
                         <td>{{index + from}}</td>
                         <td><div v-show="!nom[index]" @dblclick="semaforNom(index,todo)">{{todo.name}}</div>
@@ -203,8 +204,9 @@
 
 <script>
 import Pagination from './Pagination.vue'
+//import Pagination from './Todo.vue'
     export default {
-    components : { Pagination },
+    components : { Pagination }, //components : { Pagination, Todo },
     data(){
         return {
             collapsed: true,

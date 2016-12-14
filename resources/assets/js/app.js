@@ -18,6 +18,7 @@ Vue.component(
     require('./components/Todos.vue')
 );
 
+
 Vue.component(
     'passport-clients',
     require('./components/passport/Clients.vue')
