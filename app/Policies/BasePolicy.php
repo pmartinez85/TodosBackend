@@ -27,7 +27,7 @@ abstract class BasePolicy
      * @param  \App\Task  $task
      * @return mixed
      */
-    public function show(User $user, Task $task)
+    public function view(User $user, Task $task)
     {
         if($user->hasPermissionTo('show-task'))
             return true;

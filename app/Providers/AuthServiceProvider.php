@@ -5,6 +5,7 @@ use Gate;
 use Laravel\Passport\Passport;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Route;
 
 /**
  * Class AuthServiceProvider
@@ -31,8 +32,14 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        Passport::routes();
+
+
+        Route::group(['middleware' => 'cors',], function () {
+            Passport::routes();
+        });
+
         Passport::enableImplicitGrant();
+
         $this->defineGates();
 
     }

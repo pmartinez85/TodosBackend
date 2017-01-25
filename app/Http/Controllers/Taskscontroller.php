@@ -46,15 +46,15 @@ class TasksController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Request $request)
+    public function index()
     {
-        $user = Auth::user();
-        if ($user->can('show', \App\Task::class )){
-
-            //
-        }
-            $tasks = Task::paginate(15);
-            return $this->generatePaginatedResponse($tasks, ['propietari' => 'Pedro Martinez']);
+//        $user = Auth::user();
+//        if ($user->can('show', \App\Task::class )){
+//
+//            //
+//        }
+        $tasks = $this->repository->paginate(15);
+        return $this->generatePaginatedResponse($tasks, ['propietari' => 'Pedro Martinez']);
 }
 
     /**
@@ -79,11 +79,11 @@ class TasksController extends Controller
         if (!$request->has('user_id')) {
             $request->merge(['user_id' => Auth::id()]);
         }
-        Task::create($request->all());
+        $this->repository->create($request->all());
 
         return response([
             'error'   => false,
-            'created' => true,
+            'created' => (bool) true,
             'message' => 'Tasca creada correctament',
         ], 200);
     }
@@ -100,7 +100,7 @@ class TasksController extends Controller
 
        // $task = Task::findOrFail($id);
         /** @noinspection PhpVariableVariableInspection */
-        $task = $this->repository->find($id);
+        $task = $this->repository->findOrFail($id);
 
         return $this->transformer->transform($task);
     }
@@ -128,7 +128,7 @@ class TasksController extends Controller
     public function update(Request $request, $id)
     {
 
-        Task::findOrFail($id)->update($request->all());
+        $this->repository->update($request->all(),$id);
 
         //$this->authorize('update', $task); //abans de continuar li preguntem si estem autoritzats
 
@@ -148,7 +148,7 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        Task::findOrFail($id)->delete();
+        $this->repository->delete($id);
 
         return response([
             'error'   => false,

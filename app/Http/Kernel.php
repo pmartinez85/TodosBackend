@@ -21,13 +21,6 @@ class Kernel extends HttpKernel
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
     ];
-    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-
     /**
      * The application's route middleware groups.
      *
@@ -39,7 +32,7 @@ class Kernel extends HttpKernel
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
-            \App\Http\Middleware\VerifyCsrfToken::class,
+           // \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
         ],
@@ -49,13 +42,6 @@ class Kernel extends HttpKernel
             'bindings',
         ],
     ];
-    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-    /** @noinspection PhpUnnecessaryFullyQualifiedNameInspection */
-
     /**
      * The application's route middleware.
      *
@@ -69,5 +55,6 @@ class Kernel extends HttpKernel
         'bindings'   => \Illuminate\Routing\Middleware\SubstituteBindings::class,
         'guest'      => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle'   => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'can'        => \Illuminate\Auth\Middleware\Authorize::class,
     ];
 }

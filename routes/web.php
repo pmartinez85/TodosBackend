@@ -1,11 +1,11 @@
 <?php
 
 Route::group(['middleware' => 'auth'], function () {
-    //Route::group(['middleware' => 'can:show,App\Task'], function () {
+    Route::group(['middleware' => 'can:show,App\Task'], function () {
         Route::get('/tasks', function () {
             return view('tasks');
         });
-    //});
+    });
 });
 
 Route::get('/profile/tokens', function () {
