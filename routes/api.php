@@ -5,7 +5,10 @@
 Route::group(['prefix' => 'v1', 'middleware' => ['cors','auth:api']], function () {
         Route::resource('task', 'Taskscontroller');
         Route::resource('user', 'UsersController');
-        //Route::resource('user.task', 'UserTaskController');
+        Route::resource('user.task', 'UserTaskController');
+    Route::get('/user', function (Request $request){
+        return $request->user();
+    });
 });
 
 

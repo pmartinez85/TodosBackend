@@ -46,14 +46,15 @@ class TasksController extends Controller
     /**
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(Request $request)
     {
 //        $user = Auth::user();
 //        if ($user->can('show', \App\Task::class )){
 //
 //            //
 //        }
-        $tasks = $this->repository->paginate(15);
+//        $tasks = $this->repository->paginate(15);
+        $tasks = Task::paginate(15);
         return $this->generatePaginatedResponse($tasks, ['propietari' => 'Pedro Martinez']);
 }
 

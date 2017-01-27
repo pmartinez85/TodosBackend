@@ -66,14 +66,22 @@ class Handler extends ExceptionHandler
             if ($exception instanceof IncorrectModelException) {
                 return Response::json([
                     'error' => 'Hi ha hagut una excepció, model incorrecte: ' . $exception->getMessage(),
-                    'code' => 10,
+                    'code' => 11,
                     'status' => 404,
                 ], 404);
             }
             if ($exception instanceof \ErrorException) {
                 return Response::json([
                     'error' => 'Hi ha hagut una excepció, error: ' . $exception->getMessage(),
-                    'code' => 10,
+                    'code' => 12,
+                    'status' => 404,
+                ], 404);
+            }
+            if ($exception instanceof HttpException) {
+                return Response::json([
+                    'error'  => 'Hi ha hagut una excepció.'.$exception->getMessage(),
+                    'code'   => 13,
+                    'status' => 404,
                 ], 404);
             }
             return parent::render($request, $exception);
@@ -88,10 +96,10 @@ class Handler extends ExceptionHandler
      *
      * @internal param AuthenticationException $exception
      */
-    protected function unauthenticated($request)
+    protected function unauthenticated($request, AuthenticationException $exception)
     {
         if ($request->expectsJson()) {
-            return response()->json(401, ['error' => 'Unauthenticated.']);
+            return response()->json( ['error' => 'Unauthenticated.'], 401);
         }
 
         return redirect()->guest('login');

@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Providers;
+
+
 use Gate;
 use Laravel\Passport\Passport;
-
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Route;
 
@@ -19,8 +20,9 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
+        //'App\Model' => 'App\Policies\ModelPolicy',
         'App\Task' => 'App\Policies\TaskPolicy',
-        //'App\User' => 'App\Policies\UserPolicy',  //TODO USER POLICY
+        //'App\User' => 'App\Policies\UserPolicy',
 
     ];
 
@@ -62,41 +64,41 @@ class AuthServiceProvider extends ServiceProvider
 
         });
 
-
-//usuari admin
-
-        Gate::define('update-task1', function($user) {
-
-            return $user->isSuperAdmin(); //no tenim aquest mètode encara
-        });
-
-//Usuari admin i usuari propietari
-
-        Gate::define('update-task2', function($user, $task) {
-
-            if ($user->isAdmin()) return true;
-
-            return $user->id == $task->user_id;
-        });
-
-//usuari admin, propietari i usuari editor
-
-        Gate::define('update-task3', function($user, $task) {
-
-            if ($user->isAdmin()) return true;
-            if($user->hasRole('editor')) return true;
-
-            return $user->id == $task->user_id;
-        });
-
-//prova inicial
-
-        Gate::define('show-task', function($user) {
-
-            return false;
-        });
-
-
+//
+////usuari admin
+//
+//        Gate::define('update-task1', function($user) {
+//
+//            return $user->isSuperAdmin(); //no tenim aquest mètode encara
+//        });
+//
+////Usuari admin i usuari propietari
+//
+//        Gate::define('update-task2', function($user, $task) {
+//
+//            if ($user->isAdmin()) return true;
+//
+//            return $user->id == $task->user_id;
+//        });
+//
+////usuari admin, propietari i usuari editor
+//
+//        Gate::define('update-task3', function($user, $task) {
+//
+//            if ($user->isAdmin()) return true;
+//            if($user->hasRole('editor')) return true;
+//
+//            return $user->id == $task->user_id;
+//        });
+//
+////prova inicial
+//
+//        Gate::define('show-task', function($user) {
+//
+//            return false;
+//        });
+//
+//
 
     }
 }
