@@ -1,42 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="TodosBackend Test Suite" tests="14" assertions="59" failures="2" errors="0" time="6.411971">
-    <testsuite name="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" tests="12" assertions="57" failures="0" errors="0" time="5.465015">
-      <testcase name="testRetrieveAllTasks" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="105" assertions="30" time="0.726262"/>
-      <testcase name="testRetrieveOneTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="141" assertions="6" time="0.482323"/>
-      <testcase name="testCreateNewTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="165" assertions="3" time="0.472211"/>
-      <testcase name="testUpdateExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="185" assertions="3" time="0.454366"/>
-      <testcase name="testDeleteExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="206" assertions="3" time="0.533569"/>
-      <testcase name="testGetNotExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="238" assertions="3" time="0.503046"/>
-      <testcase name="testUpdateNotExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="249" assertions="3" time="0.447019"/>
-      <testcase name="testDeleteNotExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="260" assertions="3" time="0.461340"/>
-      <testcase name="testPagination" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="269" assertions="1" time="0.322838"/>
-      <testcase name="testNameIsRequiredAndDefaultValues" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="281" assertions="1" time="0.316073"/>
-      <testcase name="testPriorityHasToBeAnInteger" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="291" assertions="1" time="0.431156"/>
-      <testcase name="testDoneHasToBeBoolean" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="304" assertions="0" time="0.314812"/>
-    </testsuite>
-    <testsuite name="TaskControllerTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskControllerTest.php" tests="2" assertions="2" failures="2" errors="0" time="0.946956">
-      <testcase name="testAuthorizedIndex" class="TaskControllerTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskControllerTest.php" line="19" assertions="1" time="0.452001">
-        <failure type="PHPUnit_Framework_ExpectationFailedException">TaskControllerTest::testAuthorizedIndex
-Expected status code 200, got 404.
-Failed asserting that false is true.
+  <testsuite name="TodosBackend Test Suite" tests="14" assertions="2" failures="0" errors="11" time="8.532093">
+    <testsuite name="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" tests="12" assertions="2" failures="0" errors="9" time="7.131973">
+      <testcase name="testRetrieveAllTasks" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="105" assertions="0" time="1.530901">
+        <error type="Error">TasksApiTest::testRetrieveAllTasks
+Error: Call to undefined method Illuminate\Foundation\Testing\TestResponse::seeJsonStructure()
 
-/home/pedro/Code/Todos/TodosBackend/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:729
+/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php:112
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:188
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:118
+</error>
+      </testcase>
+      <testcase name="testRetrieveOneTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="141" assertions="0" time="0.590056">
+        <error type="Error">TasksApiTest::testRetrieveOneTask
+Error: Call to undefined method Illuminate\Foundation\Testing\TestResponse::seeJsonStructure()
+
+/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php:149
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:188
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:118
+</error>
+      </testcase>
+      <testcase name="testCreateNewTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="165" assertions="0" time="0.583450">
+        <error type="Error">TasksApiTest::testCreateNewTask
+Error: Call to undefined method Illuminate\Foundation\Testing\TestResponse::seeJson()
+
+/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php:172
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:188
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:118
+</error>
+      </testcase>
+      <testcase name="testUpdateExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="185" assertions="0" time="0.561143">
+        <error type="Error">TasksApiTest::testUpdateExistingTask
+Error: Call to undefined method Illuminate\Foundation\Testing\TestResponse::seeJson()
+
+/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php:194
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:188
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:118
+</error>
+      </testcase>
+      <testcase name="testDeleteExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="206" assertions="0" time="0.573520">
+        <error type="Error">TasksApiTest::testDeleteExistingTask
+Error: Call to undefined method Illuminate\Foundation\Testing\TestResponse::seeJson()
+
+/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php:211
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:188
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:118
+</error>
+      </testcase>
+      <testcase name="testGetNotExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="238" assertions="0" time="0.538196">
+        <error type="Error">TasksApiTest::testGetNotExistingTask
+Error: Call to undefined method Illuminate\Foundation\Testing\TestResponse::seeJson()
+
+/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php:226
+/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php:240
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:188
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:118
+</error>
+      </testcase>
+      <testcase name="testUpdateNotExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="249" assertions="0" time="0.506825">
+        <error type="Error">TasksApiTest::testUpdateNotExistingTask
+Error: Call to undefined method Illuminate\Foundation\Testing\TestResponse::seeJson()
+
+/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php:226
+/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php:251
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:188
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:118
+</error>
+      </testcase>
+      <testcase name="testDeleteNotExistingTask" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="260" assertions="0" time="0.499374">
+        <error type="Error">TasksApiTest::testDeleteNotExistingTask
+Error: Call to undefined method Illuminate\Foundation\Testing\TestResponse::seeJson()
+
+/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php:226
+/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php:262
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:188
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:118
+</error>
+      </testcase>
+      <testcase name="testPagination" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="269" assertions="1" time="0.392095"/>
+      <testcase name="testNameIsRequiredAndDefaultValues" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="281" assertions="1" time="0.435349"/>
+      <testcase name="testPriorityHasToBeAnInteger" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="291" assertions="0" time="0.532638">
+        <error type="Error">TasksApiTest::testPriorityHasToBeAnInteger
+Error: Call to undefined method TasksApiTest::decodeResponseJson()
+
+/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php:296
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:188
+/home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:118
+</error>
+      </testcase>
+      <testcase name="testDoneHasToBeBoolean" class="TasksApiTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskApiTest.php" line="304" assertions="0" time="0.388426"/>
+    </testsuite>
+    <testsuite name="TaskControllerTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskControllerTest.php" tests="2" assertions="0" failures="0" errors="2" time="1.400120">
+      <testcase name="testAuthorizedIndex" class="TaskControllerTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskControllerTest.php" line="19" assertions="0" time="0.797253">
+        <error type="Error">TaskControllerTest::testAuthorizedIndex
+Error: Call to undefined method TaskControllerTest::assertResponseOk()
+
 /home/pedro/Code/Todos/TodosBackend/tests/TaskControllerTest.php:26
 /home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:188
 /home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:118
-</failure>
+</error>
       </testcase>
-      <testcase name="testNotAuthorizedIndex" class="TaskControllerTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskControllerTest.php" line="29" assertions="1" time="0.494955">
-        <failure type="PHPUnit_Framework_ExpectationFailedException">TaskControllerTest::testNotAuthorizedIndex
-Expected status code 403, got 404.
-Failed asserting that 404 matches expected 403.
+      <testcase name="testNotAuthorizedIndex" class="TaskControllerTest" file="/home/pedro/Code/Todos/TodosBackend/tests/TaskControllerTest.php" line="29" assertions="0" time="0.602867">
+        <error type="Error">TaskControllerTest::testNotAuthorizedIndex
+Error: Call to undefined method TaskControllerTest::assertResponseStatus()
 
-/home/pedro/Code/Todos/TodosBackend/vendor/laravel/framework/src/Illuminate/Foundation/Testing/Concerns/MakesHttpRequests.php:744
 /home/pedro/Code/Todos/TodosBackend/tests/TaskControllerTest.php:33
 /home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:188
 /home/pedro/.composer/vendor/phpunit/phpunit/src/TextUI/Command.php:118
-</failure>
+</error>
       </testcase>
     </testsuite>
   </testsuite>

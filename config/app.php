@@ -166,6 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Spatie\Menu\Laravel\MenuServiceProvider::class,
 
         Laravel\Passport\PassportServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
@@ -248,12 +249,27 @@ return [
         'View'         => Illuminate\Support\Facades\View::class,
 
         /*
+        * Acacha Llum Aliases...
+        *
+        * See: https://github.com/acacha/llum
+        */
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        //llum_aliases
+        /*
          * Acacha Llum Aliases...
          *
          * See: https://github.com/acacha/llum
          */
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
+        //llum_aliases
+        /*
+         * Acacha Llum Aliases...
+         *
+         * See: https://github.com/acacha/llum
+         */
+        'Menu' => Spatie\Menu\Laravel\MenuFacade::class,
+        'Link' => Spatie\Menu\Laravel\Link::class,
+        'Html' => Spatie\Menu\Laravel\Html::class,
         #llum_aliases
 
     ],
