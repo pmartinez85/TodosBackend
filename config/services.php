@@ -35,6 +35,12 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'facebook' => [
+        'client_id' => '685426414973548',
+        'client_secret' => '3f2ef52c2850ade6099116d74d8a186f',
+        'redirect' => '/home',
+    ],
+
     /*
     | Acacha Llum services...
     |
